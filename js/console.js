@@ -1,5 +1,8 @@
 /* ==========================================================================
-   Consola IA estilo JARVIS — demostración ilustrativa (sin IA real)
+   Consola IA estilo JARVIS
+   - Preguntas sugeridas: respuestas preparadas (instantáneas, sin gastar cupo).
+   - Texto libre: IA real (Gemini) a través del Worker de Cloudflare.
+   - Si la IA no responde o se agota el cupo gratuito: respuestas preparadas.
    Independiente de GSAP: funciona aunque falle el CDN o con reduced-motion.
    ========================================================================== */
 (() => {
@@ -19,6 +22,13 @@
   const chips = [...root.querySelectorAll('.console__chip')];
   const cta = $('#console-cta');
   const canvas = $('#console-wave');
+  const planBtn = $('#console-plan');
+  const hint = $('#console-hint');
+
+  // Intermediario seguro (la clave de Gemini vive en Cloudflare, nunca aquí)
+  const AI_ENDPOINT = 'https://mb-ai-console.mb-ai-solutions.workers.dev/chat';
+  const AI_MAX_PER_VISIT = 8;
+  const AI_TIMEOUT_MS = 12000;
 
   // Respuestas predefinidas (máx. 280 caracteres, sin precios ni tecnicismos)
   const RESPUESTAS_CONSOLA = {
@@ -147,6 +157,35 @@
     start();
   }
 
+  /* --- IA real con respaldo --- */
+  let aiCount = 0;
+  const aiHistory = [];
+
+  const askAI = async (question, mode = 'chat') => {
+    if (!AI_ENDPOINT || aiCount >= AI_MAX_PER_VISIT) return null;
+    aiCount++;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), AI_TIMEOUT_MS);
+    try {
+      const res = await fetch(AI_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: question, mode, history: mode === 'chat' ? aiHistory.slice(-6) : [] }),
+        signal: ctrl.signal,
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (mode === 'plan') return data.plan || null;
+      if (!data.reply) return null;
+      aiHistory.push({ role: 'user', text: question }, { role: 'model', text: data.reply });
+      return data.reply;
+    } catch {
+      return null;
+    } finally {
+      clearTimeout(timer);
+    }
+  };
+
   /* --- Diálogo --- */
   let busy = false;
   let firstDone = false;
@@ -154,7 +193,7 @@
   const setBusy = (on) => {
     busy = on;
     // aria-disabled (no disabled) para que el foco del teclado no se pierda
-    [...chips, send].forEach((b) => b.setAttribute('aria-disabled', String(on)));
+    [...chips, send, planBtn].forEach((b) => b.setAttribute('aria-disabled', String(on)));
   };
 
   const addLine = (who, cls) => {
@@ -203,8 +242,22 @@
     step();
   });
 
+  const revealCta = () => {
+    if (firstDone) return;
+    firstDone = true;
+    cta.hidden = false;
+    if (!reduced && window.gsap) {
+      gsap.fromTo(cta, { opacity: 0, y: 16, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(2)' });
+    }
+  };
+
+  let mode = 'chat';
+  const DEFAULT_PLACEHOLDER = input.placeholder;
+  const PLAN_PLACEHOLDER = 'Ej: panadería, clínica dental, taller de motos…';
+
   const ask = async (question, answer) => {
     if (busy || !question.trim()) return;
+    stopAttract();
     setBusy(true);
     const u = addLine('TÚ', 'console__line--user');
     u.appendChild(document.createTextNode(question.trim()));
@@ -212,29 +265,161 @@
 
     state.textContent = 'ANALIZANDO…';
     energyTarget = reduced ? 0 : 0.6;
-    await new Promise((r) => setTimeout(r, 600));
+    const [aiReply] = await Promise.all([
+      answer ? null : askAI(question.trim()),
+      new Promise((r) => setTimeout(r, 600)),
+    ]);
 
-    await typeAnswer(answer || findAnswer(question));
+    await typeAnswer(answer || aiReply || findAnswer(question));
     state.textContent = 'EN LÍNEA';
     setBusy(false);
+    revealCta();
+  };
 
-    if (!firstDone) {
-      firstDone = true;
-      cta.hidden = false;
-      if (!reduced && window.gsap) {
-        gsap.fromTo(cta, { opacity: 0, y: 16, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'back.out(2)' });
-      }
+  /* --- Modo plan: la IA diseña 3 ideas para el negocio del visitante --- */
+  const FALLBACK_PLAN = {
+    intro: 'Esta es una idea base; en el diagnóstico gratuito la ajustamos a tu negocio.',
+    ideas: [
+      { titulo: 'Atención 24/7 en WhatsApp', detalle: 'Un asistente responde preguntas frecuentes y toma pedidos o citas, incluso de noche.' },
+      { titulo: 'Recordatorios automáticos', detalle: 'Tus clientes reciben avisos de citas, pagos o pedidos sin que tengas que escribir uno por uno.' },
+      { titulo: 'Seguimiento a clientes', detalle: 'Mensajes de seguimiento después de cada compra o visita para que vuelvan.' },
+    ],
+  };
+
+  const renderPlan = (business, plan) => {
+    const box = document.createElement('div');
+    box.className = 'plan';
+    box.innerHTML = '<p class="plan__head"><span>PLAN IA</span><span class="plan__biz"></span></p><ol class="plan__list"></ol>';
+    box.querySelector('.plan__biz').textContent = business.toUpperCase().slice(0, 40);
+    const list = box.querySelector('.plan__list');
+    plan.ideas.forEach((idea, n) => {
+      const li = document.createElement('li');
+      li.className = 'plan__item';
+      li.innerHTML = '<span class="plan__num"></span><div><p class="plan__title"></p><p class="plan__detail"></p></div>';
+      li.querySelector('.plan__num').textContent = String(n + 1).padStart(2, '0');
+      li.querySelector('.plan__title').textContent = idea.titulo;
+      li.querySelector('.plan__detail').textContent = idea.detalle;
+      list.appendChild(li);
+    });
+    const msg = `Hola, probé la consola de su web. Tengo ${business} y me interesa este plan: `
+      + plan.ideas.map((x, n) => `${n + 1}) ${x.titulo}`).join(', ') + '.';
+    const link = document.createElement('a');
+    link.className = 'plan__cta';
+    link.href = `https://wa.me/573025289834?text=${encodeURIComponent(msg.slice(0, 500))}`;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Quiero este plan para mi negocio →';
+    box.appendChild(link);
+    log.appendChild(box);
+    scrollLog();
+
+    if (!reduced && window.gsap) {
+      gsap.fromTo(box, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' });
+      gsap.fromTo(box.querySelectorAll('.plan__item'), { opacity: 0, x: -16 }, {
+        opacity: 1, x: 0, duration: 0.6, ease: 'expo.out', stagger: 0.18, delay: 0.15, onUpdate: scrollLog,
+      });
+      gsap.fromTo(link, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.5, delay: 0.75 });
     }
   };
 
+  const askPlan = async (business) => {
+    if (busy || !business.trim()) return;
+    stopAttract();
+    setBusy(true);
+    const biz = business.trim().slice(0, 80);
+    const u = addLine('TÚ', 'console__line--user');
+    u.appendChild(document.createTextNode(biz));
+    scrollLog();
+
+    state.textContent = 'DISEÑANDO PLAN…';
+    energyTarget = reduced ? 0 : 0.85;
+    const [plan] = await Promise.all([askAI(biz, 'plan'), new Promise((r) => setTimeout(r, 900))]);
+    const final = plan && plan.intro ? plan : FALLBACK_PLAN;
+
+    await typeAnswer(final.intro);
+    if (final.ideas && final.ideas.length) {
+      renderPlan(biz, final);
+      mode = 'chat';
+      input.placeholder = DEFAULT_PLACEHOLDER;
+      revealCta();
+    }
+    state.textContent = 'EN LÍNEA';
+    setBusy(false);
+  };
+
+  planBtn.addEventListener('click', async () => {
+    if (busy) return;
+    stopAttract();
+    setBusy(true);
+    const u = addLine('TÚ', 'console__line--user');
+    u.appendChild(document.createTextNode('Diseña un plan de IA para mi negocio'));
+    scrollLog();
+    await typeAnswer('¡Con gusto! Cuéntame qué negocio tienes y te armo un primer plan con 3 ideas. Por ejemplo: panadería, clínica dental o taller de motos.');
+    mode = 'plan';
+    input.placeholder = PLAN_PLACEHOLDER;
+    state.textContent = 'EN LÍNEA';
+    setBusy(false);
+    input.focus({ preventScroll: true });
+  });
+
   chips.forEach((chip) => {
-    chip.addEventListener('click', () => ask(chip.textContent, RESPUESTAS_CONSOLA[chip.dataset.key].texto));
+    chip.addEventListener('click', () => {
+      if (chip.getAttribute('aria-disabled') === 'true') return;
+      ask(chip.textContent, RESPUESTAS_CONSOLA[chip.dataset.key].texto);
+    });
   });
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (busy) return;
     const q = input.value;
     input.value = '';
-    ask(q);
+    if (mode === 'plan') askPlan(q);
+    else ask(q);
   });
+
+  /* --- Invitación a interactuar: ejemplos que se escriben solos + aviso --- */
+  const EXAMPLES = [
+    'Tengo una panadería, ¿qué harías por mí?',
+    '¿Puedes agendar citas en mi clínica?',
+    '¿Cómo me ayudas a no perder clientes?',
+    'Tengo un gimnasio, ¿qué automatizarías?',
+  ];
+  let attractOn = !reduced;
+  let attractTimer = 0;
+  function stopAttract() {
+    attractOn = false;
+    clearTimeout(attractTimer);
+    if (mode !== 'plan') input.placeholder = DEFAULT_PLACEHOLDER;
+    hint.classList.add('is-gone');
+  }
+  const typePlaceholder = (ex = 0, i = 0, erasing = false) => {
+    if (!attractOn) return;
+    const text = EXAMPLES[ex % EXAMPLES.length];
+    if (!erasing && i <= text.length) {
+      input.placeholder = `${text.slice(0, i)}▍`;
+      attractTimer = setTimeout(() => typePlaceholder(ex, i + 1), 45);
+    } else if (!erasing) {
+      attractTimer = setTimeout(() => typePlaceholder(ex, i, true), 1800);
+    } else if (i > 0) {
+      input.placeholder = `${text.slice(0, i - 1)}▍`;
+      attractTimer = setTimeout(() => typePlaceholder(ex, i - 1, true), 18);
+    } else {
+      attractTimer = setTimeout(() => typePlaceholder(ex + 1, 0), 350);
+    }
+  };
+  input.addEventListener('focus', stopAttract);
+  input.addEventListener('input', stopAttract);
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+      root.classList.add('is-seen');
+      if (attractOn) attractTimer = setTimeout(() => typePlaceholder(), 900);
+    }, { threshold: 0.45 });
+    io.observe($('.console'));
+  } else {
+    root.classList.add('is-seen');
+  }
 })();
