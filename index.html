@@ -517,27 +517,75 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="light-divider" aria-hidden="true"></div>
-    <div class="container footer__inner">
+
+    <div class="container footer__top">
       <div class="footer__brand">
-        <a href="#inicio" aria-label="MB AI SOLUTIONS, volver al inicio">
+        <a class="footer__logo-link" href="#inicio" aria-label="MB AI SOLUTIONS, volver al inicio">
           <img class="footer__logo" src="assets/img/logo-full-320.webp" alt="MB AI SOLUTIONS" width="320" height="336" loading="lazy">
         </a>
-        <p class="footer__slogan">Transformamos negocios con Inteligencia Artificial.</p>
+        <p class="footer__slogan">Transformamos negocios con <span class="text-glow">Inteligencia Artificial.</span></p>
+        <p class="footer__about">Agentes de IA en WhatsApp, automatización y software para pymes y negocios locales de Colombia.</p>
+        <!-- WhatsApp: 573025289834 -->
+        <a class="btn btn--primary btn--sm magnetic footer__cta" href="https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20quiero%20mi%20diagn%C3%B3stico%20gratuito" target="_blank" rel="noopener">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Diagnóstico gratuito
+        </a>
       </div>
 
-      <nav class="footer__nav" aria-label="Pie de página">
-        <a href="#servicios">Servicios</a>
-        <a href="#proceso">Cómo trabajamos</a>
-        <a href="#por-que">Por qué nosotros</a>
-        <!-- WhatsApp: 573025289834 -->
-        <a href="https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20quiero%20mi%20diagn%C3%B3stico%20gratuito" target="_blank" rel="noopener">WhatsApp</a>
+      <nav class="footer__col" aria-labelledby="f-servicios">
+        <h2 class="footer__heading" id="f-servicios">Servicios</h2>
+        <ul>
+          <li><a href="#servicios">Agentes de IA en WhatsApp</a></li>
+          <li><a href="#servicios">Automatización de procesos</a></li>
+          <li><a href="#servicios">Integración de sistemas</a></li>
+          <li><a href="#servicios">Asistentes internos con IA</a></li>
+          <li><a href="#servicios">Software a medida y SaaS</a></li>
+        </ul>
       </nav>
+
+      <nav class="footer__col" aria-labelledby="f-empresa">
+        <h2 class="footer__heading" id="f-empresa">Empresa</h2>
+        <ul>
+          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#por-que">Por qué nosotros</a></li>
+          <li><a href="#consola-ia">Prueba nuestra IA</a></li>
+          <li><a href="https://github.com/Mairon2812/mb-ai-solutions/blob/main/PROPUESTA.md" target="_blank" rel="noopener">Propuesta de negocio</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Contacto</h2>
+        <ul class="footer__contact">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 2.5Z"/></svg>
+            <!-- WhatsApp: 573025289834 -->
+            <a href="https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20quiero%20mi%20diagn%C3%B3stico%20gratuito" target="_blank" rel="noopener">+57 302 528 9834</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span>Colombia</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            <span>Trato directo con el fundador</span>
+          </li>
+        </ul>
+      </div>
     </div>
+
     <div class="container footer__bottom">
-      <p>© 2026 MB AI SOLUTIONS</p>
+      <p>© 2026 MB AI SOLUTIONS · Todos los derechos reservados</p>
       <p class="footer__made">Hecho con IA en Colombia <span aria-hidden="true">✦</span></p>
+      <a class="footer__top-btn" href="#inicio" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Océano cibernético (canvas decorativo) -->
+    <div class="footer__sea" aria-hidden="true">
+      <canvas class="footer__sea-canvas" id="cyber-sea"></canvas>
     </div>
   </footer>
 
@@ -558,5 +606,6 @@
   <!-- tsParticles se carga en diferido desde main.js (no bloquea el primer render) -->
   <script src="js/main.js" defer></script>
   <script src="js/console.js" defer></script>
+  <script src="js/sea.js" defer></script>
 </body>
 </html>

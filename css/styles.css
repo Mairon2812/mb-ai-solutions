@@ -1157,54 +1157,158 @@ html:not(.motion-ok) .cta__orbit { display: none; }
 @media (max-width: 767px) { .cta__perch { right: 0; top: -12%; } }
 
 /* ==========================================================================
-   Footer
+   Footer — columnas + océano cibernético
    ========================================================================== */
 .footer {
   position: relative;
   z-index: var(--z-content);
-  padding-bottom: calc(var(--space-7) + 72px);   /* espacio para el botón flotante en móvil */
-  background: linear-gradient(180deg, transparent, var(--c-bg-deep) 40%);
+  overflow: hidden;
+  background:
+    radial-gradient(80% 60% at 50% 100%, rgba(0, 131, 143, 0.22), transparent 70%),
+    linear-gradient(180deg, transparent, var(--c-bg-deep) 30%);
 }
-@media (min-width: 768px) { .footer { padding-bottom: var(--space-6); } }
-.footer__inner {
+
+.footer__top {
   display: grid;
-  gap: var(--space-6);
-  padding-block: var(--space-8) var(--space-6);
+  gap: var(--space-7) var(--space-6);
+  padding-block: var(--space-8) var(--space-7);
+  grid-template-columns: 1fr;
 }
-@media (min-width: 768px) {
-  .footer__inner { grid-template-columns: 1fr auto; align-items: end; }
+@media (min-width: 640px) {
+  .footer__top { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
 }
+@media (min-width: 1024px) {
+  .footer__top { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .footer__brand { grid-column: auto; }
+}
+
+.footer__logo-link { display: inline-block; }
 .footer__logo {
-  width: 110px;
+  width: 104px;
   height: auto;
-  filter: drop-shadow(0 0 14px rgba(0, 229, 255, 0.3));
+  filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.35));
+  transition: filter var(--dur-med) var(--ease-out);
 }
+.footer__logo-link:hover .footer__logo { filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.6)); }
 .footer__slogan {
   margin-top: var(--space-4);
   max-width: 320px;
-  font-size: var(--fs-lg);
-  font-weight: 700;
-  color: var(--c-silver);
-  line-height: 1.35;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #fff;
 }
-.footer__nav { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); }
-.footer__nav a {
+.footer__about {
+  margin-top: var(--space-3);
+  max-width: 340px;
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+}
+.footer__cta { margin-top: var(--space-5); }
+
+.footer__heading {
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-primary);
+}
+.footer__col ul { display: grid; gap: var(--space-3); }
+.footer__col a {
+  position: relative;
   color: var(--c-text-muted);
   font-size: var(--fs-sm);
   transition: color var(--dur-fast);
 }
-.footer__nav a:hover, .footer__nav a:focus-visible { color: var(--c-primary); }
+.footer__col a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: var(--c-primary);
+  box-shadow: var(--glow-sm);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.footer__col a:hover, .footer__col a:focus-visible { color: #fff; }
+.footer__col a:hover::after, .footer__col a:focus-visible::after { transform: scaleX(1); }
+
+.footer__contact li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+  color: var(--c-text-muted);
+}
+.footer__contact svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--c-primary);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .footer__bottom {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
-  gap: var(--space-2) var(--space-5);
-  padding-top: var(--space-5);
+  gap: var(--space-3) var(--space-5);
+  padding-block: var(--space-5);
   border-top: 1px solid var(--c-border);
   font-size: var(--fs-xs);
   color: var(--c-text-muted);
 }
 .footer__made span { color: var(--c-primary); }
+.footer__top-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: var(--c-primary);
+  transition: box-shadow var(--dur-med) var(--ease-out), background-color var(--dur-med);
+}
+.footer__top-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--dur-med) var(--ease-out); }
+.footer__top-btn:hover, .footer__top-btn:focus-visible { background: rgba(0, 229, 255, 0.08); box-shadow: var(--glow-sm); }
+.footer__top-btn:hover svg { transform: translateY(-3px); }
+@media (max-width: 767px) {
+  /* el botón flotante de WhatsApp ocupa esa esquina */
+  .footer__bottom { justify-content: flex-start; }
+  .footer__top-btn { order: -1; }
+}
+
+/* Océano cibernético */
+.footer__sea {
+  position: relative;
+  height: clamp(150px, 18vw, 250px);
+  margin-top: calc(clamp(150px, 18vw, 250px) * -0.35);
+  pointer-events: none;
+}
+.footer__sea::after {
+  /* brillo del horizonte */
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 30%;
+  height: 40%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(0, 229, 255, 0.18), transparent 70%);
+  filter: blur(20px);
+}
+.footer__sea-canvas { display: block; width: 100%; height: 100%; }
 
 /* ==========================================================================
    Botón flotante de WhatsApp

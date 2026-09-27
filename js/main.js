@@ -85,10 +85,12 @@
   initNav(lenis);
 
   // Header con fondo al hacer scroll
+  // (sin 'end': con end 'max' la clase se quitaba al tocar el final de la página)
+  const header = $('#header');
   ScrollTrigger.create({
     start: 'top -40',
-    end: 'max',
-    toggleClass: { targets: '#header', className: 'is-scrolled' },
+    onEnter: () => header.classList.add('is-scrolled'),
+    onLeaveBack: () => header.classList.remove('is-scrolled'),
   });
 
   /* ------------------------------------------------------------------------
