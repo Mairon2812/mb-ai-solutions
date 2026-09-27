@@ -4,9 +4,9 @@
 
 # Propuesta de negocio — MB AI SOLUTIONS
 
-**Convertimos negocios tradicionales en negocios inteligentes.**
+**Transformamos negocios con Inteligencia Artificial.**
 
-[← Volver al README](README.md) · [Ver la web](https://mairon2812.github.io/mb-ai-solutions/) · [Hablar por WhatsApp](https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20vi%20la%20propuesta%20de%20negocio%20y%20quiero%20conversar)
+[← Volver al README](README.md) · [Ver la web](https://mairon2812.github.io/mb-ai-solutions/) · [Probar la IA](https://mairon2812.github.io/mb-ai-solutions/#consola-ia) · [Hablar por WhatsApp](https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20vi%20la%20propuesta%20de%20negocio%20y%20quiero%20conversar)
 
 </div>
 
@@ -14,89 +14,122 @@
 
 ## 1. Resumen
 
-**MB AI SOLUTIONS** es una empresa de tecnología e Inteligencia Artificial que transforma negocios tradicionales mediante **agentes inteligentes en WhatsApp, automatización de procesos, integración de sistemas y software a medida**.
+**MB AI SOLUTIONS** es una empresa de tecnología de **Yopal, Casanare, Colombia**, que ayuda a negocios a automatizar y digitalizar su operación mediante **Inteligencia Artificial, automatización, integraciones, digitalización y desarrollo personalizado**.
 
-No vendemos "inteligencia artificial" en abstracto. Vendemos **resultados empresariales mediante IA**: más ventas, menos costos operativos, atención al cliente 24/7 y procesos que funcionan solos.
+No somos una agencia genérica de páginas web. Nuestro producto principal es **MB AI AGENT**: agentes inteligentes personalizados para empresas. Alrededor de él ofrecemos las capacidades que cada negocio necesita para funcionar de forma digital.
 
 ## 2. El problema
 
-El dueño típico de una pyme o negocio local en Colombia:
+Las pequeñas y medianas empresas de la región pierden tiempo y clientes en tareas que podrían automatizarse:
 
-- **Pierde clientes por no responder a tiempo en WhatsApp**, sobre todo fuera de horario.
-- **Hace todo a mano**: agenda, recordatorios, cobros, seguimiento y reportes.
-- **Sabe que la tecnología le ayudaría, pero no sabe por dónde empezar**, y las soluciones que encuentra están pensadas para empresas grandes: caras, lentas y llenas de jerga técnica.
+- Responder las mismas preguntas todos los días.
+- Revisar inventarios y registrar clientes manualmente.
+- Copiar información entre herramientas.
+- Gestionar pedidos a mano.
+- Responder mensajes fuera del horario.
+- Preparar reportes manualmente y buscar información constantemente.
+
+Saben que la tecnología les ayudaría, pero las soluciones que encuentran son caras, lentas o están llenas de jerga técnica.
 
 ## 3. La solución
 
-Llegamos, **diagnosticamos**, **implementamos en semanas** y **medimos el retorno**.
+**Convertimos procesos repetitivos en flujos digitales e inteligentes**, siempre en este orden: **problema → solución → beneficio → siguiente paso**.
+
+### Producto principal — MB AI AGENT
+
+Un agente inteligente personalizado que puede atender consultas, responder preguntas frecuentes, consultar información, capturar clientes, apoyar procesos comerciales y automatizar tareas repetitivas. Aplicaciones posibles: atención al cliente, información de productos, precios y disponibilidad, catálogos, solicitudes y pedidos, clasificación de conversaciones, seguimiento, transferencia a asesores humanos y atención fuera del horario comercial.
+
+> Las funcionalidades se definen según las necesidades y el alcance de cada negocio.
+
+### Servicios complementarios
 
 | Servicio | Resultado para el negocio |
 |---|---|
-| **Agentes inteligentes en WhatsApp** | Atiende 24/7: responde preguntas, agenda citas, toma pedidos y hace seguimiento. El negocio vende mientras el dueño duerme. |
-| **Automatización de procesos** | Recordatorios, facturación, seguimiento a clientes y reportes sin trabajo manual. Menos errores. |
-| **Integración de sistemas** | WhatsApp, CRM, hojas de cálculo, pasarelas de pago y APIs funcionando como un solo sistema. |
-| **Asistentes internos con IA** | El equipo consulta inventario, precios y disponibilidad en segundos. |
-| **Software a medida y SaaS** | Del MVP funcional al producto escalable. |
-| **Diagnóstico IA gratuito** | Auditoría para detectar exactamente dónde la IA genera retorno. Sin compromiso. |
+| **Automatización de procesos** | Menos tareas repetitivas conectando formularios, hojas de cálculo, WhatsApp, correo, notificaciones, pedidos y reportes. |
+| **Digitalización de negocios** | Inventario, clientes, pedidos, ventas y catálogos organizados en sistemas fáciles de administrar. |
+| **Integraciones y conexiones** | Herramientas y plataformas conectadas para que la información fluya sola. |
+| **Desarrollo de soluciones digitales** | Páginas web, catálogos, dashboards, sistemas y aplicaciones cuando el negocio necesita una solución propia. |
+| **Consultoría e implementación de IA** | Diagnóstico, estrategia, selección de herramientas, implementación, capacitación y documentación. |
+| **Soporte y optimización (MB AI CARE)** | Mantenimiento y mejora continua de agentes y automatizaciones. |
 
-> **Principio de la casa:** problema real → cliente real → MVP funcional → resultados medibles.
+## 4. Mercado y cliente ideal
 
-## 4. Cliente ideal
+- **Mercado inicial:** Yopal, Casanare.
+- **Clientes:** pequeñas y medianas empresas, comercios, restaurantes, boutiques, tiendas, ferreterías, barberías y salones, inmobiliarias, negocios de servicios y empresas locales que quieren digitalizarse.
+- **Señal de que nos necesita:** muchos mensajes por WhatsApp, respuestas lentas o manuales, información dispersa y tareas que se repiten todos los días.
 
-- **Quién:** dueños de pymes y negocios locales en Colombia. No son técnicos: les hablamos de ventas, tiempo y costos.
-- **Nichos:** restaurantes, hoteles, clínicas, talleres, inmobiliarias, gimnasios, veterinarias, comercios, empresas de servicios y negocios locales.
-- **Señal de que nos necesita:** recibe muchos mensajes por WhatsApp, responde tarde o a mano, y repite las mismas tareas todos los días.
+## 5. Modelo de ingresos
 
-## 5. Cómo trabajamos
+Precios de referencia para el mercado inicial de Yopal. Siempre se comunican como **"desde"**: el precio final depende del alcance, la complejidad, las herramientas y las integraciones requeridas.
 
-1. **Te escuchamos** — el dueño nos cuenta cómo funciona su negocio: qué le quita tiempo y por dónde se le escapan los clientes.
-2. **Te mostramos el plan** — explicamos en palabras simples qué vamos a automatizar, en cuánto tiempo y cuánto cuesta. Sin letra pequeña.
-3. **Lo construimos para ti** — creamos el agente de IA, lo conectamos a WhatsApp y a sus herramientas, y lo probamos con el cliente hasta que funcione de verdad.
-4. **Despegas y seguimos ahí** — el negocio empieza a atender solo, día y noche. Si quiere cambiar o mejorar algo, lo ajustamos.
+| Línea | Desde |
+|---|---|
+| **MB AI AGENT** | $900.000 COP (orientativo $900.000 – $2.500.000; avanzado $2.500.000 – $5.000.000+) |
+| Automatización de procesos | $500.000 COP |
+| Digitalización de negocios | $500.000 COP |
+| Integraciones | $400.000 COP |
+| Desarrollo — landing / web empresarial / e-commerce / dashboard / aplicación | $500.000 / $1.000.000 / $1.500.000 / $2.000.000 / $3.000.000 COP |
+| Consultoría — diagnóstico | $150.000 COP (diagnóstico inicial gratuito como mecanismo comercial limitado) |
 
-## 6. Modelo de negocio
+**Paquetes:** START desde $900.000 · BUSINESS desde $1.800.000 · CUSTOM desde $3.000.000 COP.
 
-- **Puerta de entrada:** el **diagnóstico IA gratuito**. Reduce la barrera para el dueño de negocio y nos permite proponer solo lo que genera retorno.
-- **Ingresos por implementación:** cada proyecto (agente de WhatsApp, automatización, integración o software) se cotiza tras el diagnóstico, con **precios pensados para pymes**.
-- **Acompañamiento post-implementación:** la IA se mide y se mejora con el tiempo; la relación con el cliente continúa después del lanzamiento.
-- **Canal de adquisición:** la web y WhatsApp, con **una sola conversión**: que el dueño de negocio inicie una conversación.
+**Ingreso recurrente — MB AI CARE:** BASIC desde $200.000 · BUSINESS desde $350.000 · PRO desde $600.000 COP/mes.
 
-## 7. Por qué nosotros
+**Costos de terceros:** proveedores de IA, WhatsApp/Meta, hosting, dominios, automatizadores y servicios en la nube pueden generar costos adicionales según el proveedor y el nivel de uso, y se cobran por separado.
+
+## 6. Cómo trabajamos
+
+1. **Diagnóstico** — entendemos cómo funciona actualmente el negocio.
+2. **Diseño** — identificamos qué procesos podemos digitalizar o automatizar.
+3. **Implementación** — construimos y configuramos la solución.
+4. **Pruebas** — validamos los flujos antes de ponerlos en funcionamiento.
+5. **Capacitación** — enseñamos al equipo cómo utilizar el sistema.
+6. **Soporte** — acompañamos la evolución de la solución.
+
+**Plazos:** implementaciones normalmente de **1 a 4 semanas**, según el alcance, la complejidad y las integraciones. El plazo definitivo se establece después del diagnóstico.
+
+## 7. Canal de adquisición
+
+La web funciona como **sitio web + catálogo de servicios + herramienta comercial + captador de leads**:
+
+- Cada llamado a la acción abre WhatsApp con un mensaje distinto según el origen (paquete, servicio o sección), para saber qué le interesa al cliente desde el primer mensaje.
+- La **consola IA** de la web (Google Gemini) responde dudas y arma un **plan de 3 ideas** para el negocio del visitante, con botón directo a WhatsApp.
+- CTA principal: **Solicitar diagnóstico**. Secundario: **Quiero automatizar mi negocio**.
+
+## 8. Por qué nosotros
 
 | Diferenciador | Qué significa para el cliente |
 |---|---|
 | **Trato directo con el fundador** | Sin intermediarios ni burocracia de agencia grande. |
-| **Implementación en semanas, no en meses** | MVP funcional primero; resultados pronto. |
+| **Implementación ágil** | Normalmente de 1 a 4 semanas; primero una versión que funcione. |
 | **Hablamos tu idioma** | Resultados de negocio, no jerga técnica. |
-| **Precios pensados para pymes** | No para corporativos. |
-| **Acompañamiento post-implementación** | La solución se mide y se mejora. |
+| **Precios pensados para pymes** | Referencias claras desde el inicio, adaptadas al mercado local. |
+| **Acompañamiento** | MB AI CARE para mantener y mejorar la solución. |
 
-## 8. Etapa actual y hacia dónde vamos
+## 9. Etapa actual y hacia dónde vamos
 
-**Hoy (2026): validación.** Un equipo pequeño, experto y rápido, con operación directa del fundador. Los casos de éxito y los resultados medibles se construyen con los primeros proyectos — por eso no publicamos cifras ni testimonios que todavía no existen.
+**Hoy (2026): validación en Yopal.** Un equipo pequeño, experto y rápido, con operación directa del fundador. Los casos de éxito y los resultados medibles se construyen con los primeros proyectos; por eso no publicamos cifras ni testimonios que todavía no existen.
 
 **Hacia dónde vamos:**
 
-1. **Primeros clientes y casos reales** con resultados medidos en los nichos objetivo.
-2. **Soluciones repetibles por nicho**: convertir lo que funciona en productos listos para restaurantes, clínicas, talleres, etc.
-3. **Software SaaS propio** a partir de esas soluciones.
-4. **Expansión internacional**, más allá de Colombia.
+1. **Primeros clientes** en los sectores objetivo, con resultados medidos.
+2. **Soluciones repetibles por sector** a partir de lo que funcione.
+3. **Ingreso recurrente** con MB AI CARE.
+4. **Expansión** más allá de Casanare.
 
-El nombre lo resume: **MB** es *Mairon Baron* —el origen— y *Modern Business* —la marca que crece más allá de la persona.
+Las capacidades que aún no existen como producto se ofrecen como **soluciones personalizadas, disponibles según el alcance del proyecto**.
 
-## 9. Fundador
+## 10. Fundador
 
-**Mairon Baron** — Ingeniero de Sistemas (Unisangil, Colombia). Especialista en IA aplicada, automatización y SaaS para negocios reales.
+**Mairon Baron** — Ingeniero de Sistemas (Unisangil, Colombia). IA aplicada, automatización y desarrollo de soluciones digitales para negocios reales.
 
-**Stack:** Flutter/Dart · Laravel/PHP · PostgreSQL · Firebase · Python · n8n · Power Automate · APIs REST.
+## 11. ¿Hablamos?
 
-## 10. ¿Hablamos?
-
-¿Tienes un negocio y quieres tu diagnóstico gratuito? ¿Quieres ser **cliente piloto**, **aliado** o conversar sobre la idea?
+¿Tienes un negocio en Yopal y quieres saber qué se puede automatizar? ¿Quieres ser **cliente piloto** o **aliado**?
 
 <div align="center">
 
-[![Escríbenos por WhatsApp](https://img.shields.io/badge/Escr%C3%ADbenos_por_WhatsApp-00E5FF?style=for-the-badge&logo=whatsapp&logoColor=121212)](https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20vi%20la%20propuesta%20de%20negocio%20y%20quiero%20conversar)
+[![Solicitar diagnóstico](https://img.shields.io/badge/Solicitar_diagn%C3%B3stico-00E5FF?style=for-the-badge&logo=whatsapp&logoColor=121212)](https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20vi%20la%20propuesta%20de%20negocio%20y%20quiero%20conversar)
 
 <sub>© 2026 MB AI SOLUTIONS — Transformamos negocios con Inteligencia Artificial.</sub>
 
