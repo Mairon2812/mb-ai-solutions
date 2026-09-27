@@ -34,7 +34,7 @@
   const RESPUESTAS_CONSOLA = {
     restaurante: {
       claves: ['restaurante', 'comida', 'pedido', 'menu', 'mesa', 'domicilio', 'cocina'],
-      texto: 'Atendería a tus clientes por WhatsApp mientras tú cocinas: les muestro el menú, tomo los pedidos, reservo mesas y aviso cuando el pedido está listo. Tú solo revisas lo que va entrando.',
+      texto: 'Con MB AI AGENT atendería a tus clientes mientras tú cocinas: muestro el menú y los horarios, recibo pedidos y le paso a tu equipo lo que necesite una persona. Las funciones exactas las definimos contigo en el diagnóstico.',
     },
     noche: {
       claves: ['noche', 'madrugada', 'horario', '24', 'domingo', 'festivo', 'duermes', 'dormir'],
@@ -42,7 +42,7 @@
     },
     costo: {
       claves: ['cuesta', 'precio', 'valor', 'costo', 'cobran', 'cuanto', 'tarifa', 'pagar'],
-      texto: 'Depende de tu negocio y de lo que quieras automatizar, por eso no te doy un número al aire. Empezamos con un diagnóstico gratuito y ahí te mostramos el plan y el precio exacto, sin letra pequeña.',
+      texto: 'MB AI AGENT arranca desde $900.000 COP y las automatizaciones desde $500.000 COP. El precio final depende del alcance y las integraciones; en el diagnóstico te damos el valor exacto y el plazo, normalmente de 1 a 4 semanas.',
     },
     tecnologia: {
       claves: ['tecnolog', 'saber', 'dificil', 'complicado', 'aprender', 'programar', 'computador'],

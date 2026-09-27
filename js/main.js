@@ -689,6 +689,19 @@
       const glow = gsap.to($('.s-layer--top', svg), { opacity: 0.65, duration: 1, yoyo: true, repeat: -1, ease: 'sine.inOut' });
       return [float, chip, glow];
     },
+    care(svg) {
+      const pulse = gsap.to($('.s-pulse', svg), {
+        motionPath: { path: $('#care-line', svg) },
+        duration: 2.4, ease: 'none', repeat: -1,
+      });
+      const shield = gsap.to($('.s-shield', svg), {
+        scale: 1.08, svgOrigin: '232 60', duration: 1.2, ease: 'sine.inOut', yoyo: true, repeat: -1,
+      });
+      const check = gsap.fromTo($('.s-shield .s-check', svg), { opacity: 0.3 }, {
+        opacity: 1, duration: 0.6, yoyo: true, repeat: -1, ease: 'sine.inOut',
+      });
+      return [pulse, shield, check];
+    },
     scan(svg) {
       const lens = $('.s-lens', svg);
       gsap.set(lens, { x: 53, y: 58 });
@@ -832,6 +845,39 @@
       yPercent: 6,
       ease: 'none',
       scrollTrigger: { trigger: '.why__media', start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     MB AI AGENT — conversación de ejemplo en bucle (solo en pantalla)
+     ------------------------------------------------------------------------ */
+  function agentChat() {
+    if (!motionOK) return;
+    const phone = $('.phone');
+    if (!phone) return;
+    const msgs = $$('[data-msg]', phone);
+    const typing = $('[data-typing]', phone);
+    const dots = $$('span', typing);
+
+    const tl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.4 });
+    tl.set(msgs, { opacity: 0, y: 12, scale: 0.96 });
+    msgs.forEach((m) => {
+      const out = m.classList.contains('bubble--out');
+      if (out) {
+        tl.set(typing, { display: 'inline-flex', opacity: 0 })
+          .to(typing, { opacity: 1, duration: 0.2 })
+          .to(dots, { y: -4, duration: 0.2, stagger: 0.1, yoyo: true, repeat: 3, ease: 'sine.inOut' }, '<')
+          .set(typing, { display: 'none' });
+      }
+      tl.to(m, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(1.8)', transformOrigin: out ? '100% 100%' : '0% 100%' }, out ? '>' : '+=0.5');
+    });
+    tl.to(msgs, { opacity: 0, duration: 0.5 }, '+=2.6');
+
+    ScrollTrigger.create({
+      trigger: phone,
+      start: 'top bottom',
+      end: 'bottom top',
+      onToggle: (self) => (self.isActive ? tl.play() : tl.pause()),
     });
   }
 
@@ -995,6 +1041,7 @@
     processSteps();
     whyMedia();
     finalCta();
+    agentChat();
     waFloat();
     ambientParticles();
     ScrollTrigger.refresh();
