@@ -1704,6 +1704,8 @@ html:not(.motion-ok) .cta__orbit { display: none; }
 
 /* Aviso flotante sobre el campo */
 .console__plan-wrap { position: relative; display: grid; }
+/* La Morpho con su letrero reemplaza al aviso anterior */
+.console__plan-wrap .console__hint { display: none; }
 .console__hint {
   position: absolute;
   z-index: 2;
@@ -2210,19 +2212,6 @@ html:not(.motion-ok) .guide.is-on { opacity: 1; }
   border-radius: 50%;
   background: radial-gradient(circle, rgba(0, 229, 255, 0.18), transparent 70%);
 }
-.guide__svg {
-  width: 64px;
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.85)) drop-shadow(0 0 18px rgba(0, 229, 255, 0.35));
-}
-.guide__up { fill: url(#wing-up); stroke: rgba(232, 253, 255, 0.8); stroke-width: 0.8; }
-.guide__low { fill: url(#wing-low); stroke: rgba(232, 253, 255, 0.55); stroke-width: 0.8; }
-.guide__vein { fill: none; stroke: rgba(232, 253, 255, 0.45); stroke-width: 0.7; }
-.guide__spot { fill: #E8FDFF; opacity: 0.9; }
-.guide__torso { fill: #E0E0E0; }
-.guide__antenna { fill: none; stroke: #E0E0E0; stroke-width: 1.2; stroke-linecap: round; }
-.guide__tip-dot { fill: #00E5FF; }
 .guide__tip {
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-pill);
@@ -2243,7 +2232,7 @@ html:not(.motion-ok) .guide.is-on { opacity: 1; }
 html:not(.motion-ok) .guide__tip { opacity: 1; }
 @media (max-width: 767px) {
   .guide__body { width: 58px; height: 54px; }
-  .guide__svg { width: 50px; }
+
 }
 
 /* La consola responde al llamado de la mariposa */
@@ -2252,6 +2241,112 @@ html:not(.motion-ok) .guide__tip { opacity: 1; }
 @keyframes corner-call { 50% { transform: scale(1.35); opacity: 0.6; } }
 @media (prefers-reduced-motion: reduce) {
   .jarvis.is-called .console::after, .jarvis.is-called .console__corner { animation: none !important; }
+}
+
+/* ==========================================================================
+   Mariposa Morpho (referencia: Morpho azul) — SVG compartido
+   ========================================================================== */
+.morpho { display: block; width: 100%; height: auto; overflow: visible; }
+.morpho .mo-fore,
+.morpho .mo-hind { stroke: #050b24; stroke-width: 3.2; stroke-linejoin: round; }
+.morpho .mo-sheen { fill: #E8FDFF; opacity: 0.12; }
+.morpho .mo-dots { fill: rgba(255, 255, 255, 0.9); }
+.morpho .mo-body { fill: #0a1030; stroke: #3a6bff; stroke-width: 0.8; }
+.morpho .mo-antenna { fill: none; stroke: #9fb8ff; stroke-width: 1.3; stroke-linecap: round; }
+.morpho .mo-tip { fill: #00E5FF; }
+.guide__svg,
+.morpho--perch,
+.morpho--fly {
+  filter: drop-shadow(0 0 8px rgba(47, 155, 255, 0.85)) drop-shadow(0 0 22px rgba(0, 229, 255, 0.35));
+}
+
+/* Entrada: la Morpho vuela hacia la cámara con su letrero */
+.morpho-fly {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--z-cursor) - 1);
+  width: 90px;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.morpho-fly__banner {
+  position: absolute;
+  top: 38%;
+  right: 78%;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(8, 16, 48, 0.92);
+  border: 1px solid rgba(47, 155, 255, 0.8);
+  box-shadow: 0 0 12px rgba(47, 155, 255, 0.6);
+  color: #fff;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transform-origin: 100% 50%;
+}
+.morpho-fly__banner.is-below {
+  top: 102%;
+  right: auto;
+  left: 50%;
+  max-width: 96px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.25;
+  transform-origin: 50% 0;
+}
+.morpho-fly__banner.is-below::after { display: none; }
+.morpho-fly__banner::after {
+  /* hilo que une el letrero con la mariposa */
+  content: "";
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 14px;
+  height: 1px;
+  background: rgba(159, 184, 255, 0.9);
+}
+
+/* Posada en la esquina de la consola con el letrero */
+.morpho-perch {
+  position: absolute;
+  top: -44px;
+  right: 6px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.morpho-perch.is-on { opacity: 1; visibility: visible; pointer-events: auto; }
+.morpho-perch.is-gone { pointer-events: none; }
+.morpho-perch__bug { width: 64px; flex: none; order: 2; }
+.morpho-sign { order: 1; display: flex; align-items: center; padding: 0; cursor: pointer; }
+.morpho-sign__board {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(10, 24, 80, 0.95), rgba(8, 16, 48, 0.95));
+  border: 1px solid rgba(47, 155, 255, 0.85);
+  box-shadow: 0 0 16px rgba(47, 155, 255, 0.5), inset 0 0 12px rgba(0, 229, 255, 0.12);
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  white-space: nowrap;
+  transition: box-shadow var(--dur-med) var(--ease-out);
+}
+.morpho-sign__string { order: 2; width: 12px; height: 1px; background: rgba(159, 184, 255, 0.9); }
+.morpho-sign:hover .morpho-sign__board,
+.morpho-sign:focus-visible .morpho-sign__board { box-shadow: 0 0 26px rgba(47, 155, 255, 0.8), inset 0 0 12px rgba(0, 229, 255, 0.2); }
+.morpho-sign:focus-visible { outline: 2px solid var(--c-primary); outline-offset: 4px; border-radius: 10px; }
+@media (max-width: 479px) {
+  .morpho-perch { right: 2px; top: -40px; }
+  .morpho-perch__bug { width: 52px; }
+  .morpho-sign__board { white-space: normal; max-width: 190px; font-size: 0.75rem; }
 }
 
 .sr-only {
