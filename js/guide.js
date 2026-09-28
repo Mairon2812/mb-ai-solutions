@@ -15,6 +15,7 @@
   if (!guide || !consoleBox) return;
 
   const root = document.documentElement;
+  const T = window.MB_T || ((x) => x);
   const motionOK = root.classList.contains('motion-ok') && !!window.gsap;
   const heroEnd = document.getElementById('problemas');
   const input = document.getElementById('console-input');
@@ -142,9 +143,9 @@
   const perch = document.createElement('div');
   perch.className = 'morpho-perch';
   perch.innerHTML = `
-    <button type="button" class="morpho-sign" aria-label="Pruébala: escribe tu pregunta a la IA">
+    <button type="button" class="morpho-sign" aria-label="${T('Pruébala: escribe tu pregunta a la IA')}">
       <span class="morpho-sign__string" aria-hidden="true"></span>
-      <span class="morpho-sign__board">✦ ¡Pruébala! Pregúntale lo que quieras</span>
+      <span class="morpho-sign__board">${T('✦ ¡Pruébala! Pregúntale lo que quieras')}</span>
     </button>
     <span class="morpho-perch__bug" aria-hidden="true">${morphoSVG('morpho--perch')}</span>`;
   // Se posa sobre el botón del plan: justo donde el visitante debe actuar
@@ -183,7 +184,7 @@
   const flyer = document.createElement('div');
   flyer.className = 'morpho-fly';
   flyer.setAttribute('aria-hidden', 'true');
-  flyer.innerHTML = `<span class="morpho-fly__banner">✦ ¡Pruébala! Pregúntale lo que quieras</span>${morphoSVG('morpho--fly')}`;
+  flyer.innerHTML = `<span class="morpho-fly__banner">${T('✦ ¡Pruébala! Pregúntale lo que quieras')}</span>${morphoSVG('morpho--fly')}`;
   document.body.appendChild(flyer);
   const flyerSvg = flyer.querySelector('svg');
   const flyerBanner = flyer.querySelector('.morpho-fly__banner');

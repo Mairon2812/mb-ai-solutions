@@ -12,6 +12,8 @@
   if (!root) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const T = window.MB_T || ((x) => x);
+  const LANG = window.MB_LANG === 'en' ? 'en' : 'es';
   const $ = (sel) => root.querySelector(sel);
   const log = $('#console-log');
   const state = $('#console-state');
@@ -33,19 +35,19 @@
   // Respuestas predefinidas (máx. 280 caracteres, sin precios ni tecnicismos)
   const RESPUESTAS_CONSOLA = {
     restaurante: {
-      claves: ['restaurante', 'comida', 'pedido', 'menu', 'mesa', 'domicilio', 'cocina'],
+      claves: ['restaurante', 'comida', 'pedido', 'menu', 'mesa', 'domicilio', 'cocina', 'restaurant', 'food', 'order'],
       texto: 'Con MB AI AGENT atendería a tus clientes mientras tú cocinas: muestro el menú y los horarios, recibo pedidos y le paso a tu equipo lo que necesite una persona. Las funciones exactas las definimos contigo en el diagnóstico.',
     },
     noche: {
-      claves: ['noche', 'madrugada', 'horario', '24', 'domingo', 'festivo', 'duermes', 'dormir'],
+      claves: ['noche', 'madrugada', 'horario', '24', 'domingo', 'festivo', 'duermes', 'dormir', 'night', 'hours', 'weekend', 'sleep'],
       texto: 'Sí. No duermo ni tomo vacaciones: respondo a las 3 de la mañana igual que a las 3 de la tarde. Si algo necesita a una persona, lo dejo anotado para que tu equipo lo vea al llegar.',
     },
     costo: {
-      claves: ['cuesta', 'precio', 'valor', 'costo', 'cobran', 'cuanto', 'tarifa', 'pagar'],
+      claves: ['cuesta', 'precio', 'valor', 'costo', 'cobran', 'cuanto', 'tarifa', 'pagar', 'cost', 'price', 'pricing', 'how much', 'fee'],
       texto: 'MB AI AGENT arranca desde $900.000 COP y las automatizaciones desde $500.000 COP. El precio final depende del alcance y las integraciones; en el diagnóstico te damos el valor exacto y el plazo, normalmente de 1 a 4 semanas.',
     },
     tecnologia: {
-      claves: ['tecnolog', 'saber', 'dificil', 'complicado', 'aprender', 'programar', 'computador'],
+      claves: ['tecnolog', 'saber', 'dificil', 'complicado', 'aprender', 'programar', 'computador', 'tech', 'difficult', 'learn', 'code'],
       texto: 'Para nada. Si sabes usar WhatsApp, ya sabes usarme. Nosotros instalamos, conectamos y probamos todo contigo. Tú solo nos cuentas cómo funciona tu negocio.',
     },
   };
@@ -60,7 +62,7 @@
 
   /* --- Reloj en vivo --- */
   const tick = () => {
-    clock.textContent = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    clock.textContent = new Date().toLocaleTimeString(LANG === 'en' ? 'en-US' : 'es-CO', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
   };
   tick();
   setInterval(tick, 1000);
@@ -170,7 +172,7 @@
       const res = await fetch(AI_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: question, mode, history: mode === 'chat' ? aiHistory.slice(-6) : [] }),
+        body: JSON.stringify({ message: question, mode, lang: LANG, history: mode === 'chat' ? aiHistory.slice(-6) : [] }),
         signal: ctrl.signal,
       });
       if (!res.ok) return null;
@@ -205,7 +207,8 @@
   };
   const scrollLog = () => { log.scrollTop = log.scrollHeight; };
 
-  const typeAnswer = (text) => new Promise((resolve) => {
+  const typeAnswer = (raw) => new Promise((resolve) => {
+    const text = T(raw);
     const line = addLine('MB·IA', 'console__line--ai');
     // Texto completo para lectores de pantalla; la animación es solo visual
     const sr = document.createElement('span');
@@ -225,7 +228,7 @@
     caret.className = 'console__caret';
     line.appendChild(caret);
     energyTarget = 1;
-    state.textContent = 'RESPONDIENDO';
+    state.textContent = T('RESPONDIENDO');
     let i = 0;
     const step = () => {
       i += 1 + (Math.random() < 0.3 ? 1 : 0);
@@ -253,17 +256,17 @@
 
   let mode = 'chat';
   const DEFAULT_PLACEHOLDER = input.placeholder;
-  const PLAN_PLACEHOLDER = 'Ej: panadería, clínica dental, taller de motos…';
+  const PLAN_PLACEHOLDER = T('Ej: panadería, clínica dental, taller de motos…');
 
   const ask = async (question, answer) => {
     if (busy || !question.trim()) return;
     stopAttract();
     setBusy(true);
-    const u = addLine('TÚ', 'console__line--user');
+    const u = addLine(T('TÚ'), 'console__line--user');
     u.appendChild(document.createTextNode(question.trim()));
     scrollLog();
 
-    state.textContent = 'ANALIZANDO…';
+    state.textContent = T('ANALIZANDO…');
     energyTarget = reduced ? 0 : 0.6;
     const [aiReply] = await Promise.all([
       answer ? null : askAI(question.trim()),
@@ -271,7 +274,7 @@
     ]);
 
     await typeAnswer(answer || aiReply || findAnswer(question));
-    state.textContent = 'EN LÍNEA';
+    state.textContent = T('EN LÍNEA');
     setBusy(false);
     revealCta();
   };
@@ -289,7 +292,7 @@
   const renderPlan = (business, plan) => {
     const box = document.createElement('div');
     box.className = 'plan';
-    box.innerHTML = '<p class="plan__head"><span>PLAN IA</span><span class="plan__biz"></span></p><ol class="plan__list"></ol>';
+    box.innerHTML = '<p class="plan__head"><span>' + T('PLAN IA') + '</span><span class="plan__biz"></span></p><ol class="plan__list"></ol>';
     box.querySelector('.plan__biz').textContent = business.toUpperCase().slice(0, 40);
     const list = box.querySelector('.plan__list');
     plan.ideas.forEach((idea, n) => {
@@ -297,18 +300,20 @@
       li.className = 'plan__item';
       li.innerHTML = '<span class="plan__num"></span><div><p class="plan__title"></p><p class="plan__detail"></p></div>';
       li.querySelector('.plan__num').textContent = String(n + 1).padStart(2, '0');
-      li.querySelector('.plan__title').textContent = idea.titulo;
-      li.querySelector('.plan__detail').textContent = idea.detalle;
+      li.querySelector('.plan__title').textContent = T(idea.titulo);
+      li.querySelector('.plan__detail').textContent = T(idea.detalle);
       list.appendChild(li);
     });
-    const msg = `Hola, probé la consola de su web. Tengo ${business} y me interesa este plan: `
-      + plan.ideas.map((x, n) => `${n + 1}) ${x.titulo}`).join(', ') + '.';
+    const list3 = plan.ideas.map((x, n) => `${n + 1}) ${T(x.titulo)}`).join(', ');
+    const msg = LANG === 'en'
+      ? `Hi, I tried the console on your website. I run a ${business} and I'm interested in this plan: ${list3}.`
+      : `Hola, probé la consola de su web. Tengo ${business} y me interesa este plan: ${list3}.`;
     const link = document.createElement('a');
     link.className = 'plan__cta';
     link.href = `https://wa.me/573025289834?text=${encodeURIComponent(msg.slice(0, 500))}`;
     link.target = '_blank';
     link.rel = 'noopener';
-    link.textContent = 'Quiero este plan para mi negocio →';
+    link.textContent = T('Quiero este plan para mi negocio →');
     box.appendChild(link);
     log.appendChild(box);
     scrollLog();
@@ -327,11 +332,11 @@
     stopAttract();
     setBusy(true);
     const biz = business.trim().slice(0, 80);
-    const u = addLine('TÚ', 'console__line--user');
+    const u = addLine(T('TÚ'), 'console__line--user');
     u.appendChild(document.createTextNode(biz));
     scrollLog();
 
-    state.textContent = 'DISEÑANDO PLAN…';
+    state.textContent = T('DISEÑANDO PLAN…');
     energyTarget = reduced ? 0 : 0.85;
     const [plan] = await Promise.all([askAI(biz, 'plan'), new Promise((r) => setTimeout(r, 900))]);
     const final = plan && plan.intro ? plan : FALLBACK_PLAN;
@@ -343,7 +348,7 @@
       input.placeholder = DEFAULT_PLACEHOLDER;
       revealCta();
     }
-    state.textContent = 'EN LÍNEA';
+    state.textContent = T('EN LÍNEA');
     setBusy(false);
   };
 
@@ -351,13 +356,13 @@
     if (busy) return;
     stopAttract();
     setBusy(true);
-    const u = addLine('TÚ', 'console__line--user');
-    u.appendChild(document.createTextNode('Diseña un plan de IA para mi negocio'));
+    const u = addLine(T('TÚ'), 'console__line--user');
+    u.appendChild(document.createTextNode(T('Diseña un plan de IA para mi negocio')));
     scrollLog();
     await typeAnswer('¡Con gusto! Cuéntame qué negocio tienes y te armo un primer plan con 3 ideas. Por ejemplo: panadería, clínica dental o taller de motos.');
     mode = 'plan';
     input.placeholder = PLAN_PLACEHOLDER;
-    state.textContent = 'EN LÍNEA';
+    state.textContent = T('EN LÍNEA');
     setBusy(false);
     input.focus({ preventScroll: true });
   });
@@ -384,7 +389,7 @@
     '¿Puedes agendar citas en mi clínica?',
     '¿Cómo me ayudas a no perder clientes?',
     'Tengo un gimnasio, ¿qué automatizarías?',
-  ];
+  ].map(T);
   let attractOn = !reduced;
   let attractTimer = 0;
   function stopAttract() {

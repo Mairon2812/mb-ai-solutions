@@ -2349,6 +2349,22 @@ html:not(.motion-ok) .guide__tip { opacity: 1; }
   .morpho-sign__board { white-space: normal; max-width: 190px; font-size: 0.75rem; }
 }
 
+/* Selector de idioma ES / EN */
+.lang-switch {
+  min-width: 44px;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  color: var(--c-text);
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  transition: border-color var(--dur-fast), background-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.lang-switch:hover, .lang-switch:focus-visible { border-color: var(--c-primary); background: rgba(0, 229, 255, 0.08); box-shadow: var(--glow-sm); }
+@media (max-width: 899px) { .lang-switch { min-height: 44px; font-size: var(--fs-sm); } }
+
 .sr-only {
   position: absolute;
   width: 1px;
