@@ -241,6 +241,9 @@
     'Prueba nuestra IA: ir a la consola del asistente': 'Try our AI: go to the assistant console',
     'Escríbenos por WhatsApp': 'Message us on WhatsApp',
     'Pie de página': 'Footer',
+    'Hablamos español e inglés': 'We speak English & Spanish',
+    'Atendemos en español e inglés': 'We work in English & Spanish',
+    'Idioma / Language': 'Language / Idioma',
     // Textos generados por JS (console.js / guide.js)
     'TÚ': 'YOU', 'ANALIZANDO…': 'ANALYZING…', 'RESPONDIENDO': 'RESPONDING', 'DISEÑANDO PLAN…': 'DESIGNING PLAN…', 'PLAN IA': 'AI PLAN',
     'Con MB AI AGENT atendería a tus clientes mientras tú cocinas: muestro el menú y los horarios, recibo pedidos y le paso a tu equipo lo que necesite una persona. Las funciones exactas las definimos contigo en el diagnóstico.': 'With MB AI AGENT I’d serve your customers while you cook: I share the menu and hours, take orders and pass anything that needs a person to your team. We define the exact features with you in the diagnosis.',
@@ -330,16 +333,15 @@
     if (missing.length && params.has('i18n-debug')) console.warn('[i18n] Sin traducir:', missing);
   }
 
-  /* ---------- 5. Botón ES / EN ---------- */
-  document.querySelectorAll('[data-lang-toggle]').forEach((btn) => {
-    const other = lang === 'en' ? 'es' : 'en';
-    btn.textContent = other.toUpperCase();
-    btn.setAttribute('aria-label', lang === 'en' ? 'Ver la página en español' : 'View this page in English');
-    btn.setAttribute('lang', other);
-    btn.addEventListener('click', () => {
-      const url = new URL(location.href);
-      url.searchParams.set('lang', other);
-      location.href = url.toString();
-    });
+  /* ---------- 5. Selector ES / EN ---------- */
+  document.querySelectorAll('.lang__opt').forEach((a) => {
+    const on = a.dataset.lang === lang;
+    a.classList.toggle('is-active', on);
+    if (on) a.setAttribute('aria-current', 'true');
+    // Conserva el resto de la URL (hash incluido) al cambiar de idioma
+    const url = new URL(location.href);
+    url.searchParams.set('lang', a.dataset.lang);
+    url.searchParams.delete('i18n-debug');
+    a.href = url.toString();
   });
 })();

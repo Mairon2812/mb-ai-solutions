@@ -177,6 +177,7 @@
         onComplete: () => $('[data-split]').classList.add('is-revealed'), // libera el glow del recorte
       }, '-=0.6')
       .to('.hero__sub', { opacity: 1, y: 0, duration: 1, startAt: { y: 20 } }, '-=0.75')
+      .to('.bilingual', { opacity: 1, y: 0, scale: 1, duration: 0.8, startAt: { y: 14, scale: 0.94 }, ease: 'back.out(1.8)' }, '-=0.7')
       .to('.hero__ctas', { opacity: 1, y: 0, duration: 1, startAt: { y: 20 } }, '-=0.8')
       .to('.stream', { opacity: 1, x: 0, duration: 2.2, stagger: 0.15, ease: 'power3.out' }, 0.2)
       .to('.colibri', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0.5)
