@@ -1,6 +1,6 @@
 /* ==========================================================================
    MB AI SOLUTIONS — main.js
-   Stack: GSAP 3.13 (ScrollTrigger, MotionPathPlugin) + Lenis + tsParticles
+   Stack: GSAP 3.13 (ScrollTrigger) + Lenis + tsParticles
    ========================================================================== */
 (() => {
   'use strict';
@@ -24,7 +24,8 @@
     return;
   }
 
-  gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+  gsap.registerPlugin(ScrollTrigger);
+  if (window.MotionPathPlugin) gsap.registerPlugin(MotionPathPlugin);
 
   /* ------------------------------------------------------------------------
      1. Smooth scroll — Lenis sincronizado con el ticker de GSAP
@@ -35,7 +36,7 @@
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
-    lenis.stop(); // bloqueado mientras corre el preloader
+
   }
 
   const scrollToTarget = (target) => {
@@ -120,95 +121,10 @@
     return $$('.word__inner', el);
   }
 
-  /* ------------------------------------------------------------------------
-     4. Preloader — progreso real (fuentes + imágenes críticas)
-     ------------------------------------------------------------------------ */
-  function runPreloader() {
-    const fill = $('#preloader-fill');
-    const pre = $('#preloader');
-    const tasks = [
-      document.fonts ? document.fonts.ready : Promise.resolve(),
-      ...['.preloader__logo', '.colibri__img'].map((s) => {
-        const img = $(s);
-        return img && !img.complete ? img.decode().catch(() => {}) : Promise.resolve();
-      }),
-    ];
-    let done = 0;
-    const progress = { v: 0 };
-    const bump = () => {
-      done++;
-      gsap.to(progress, {
-        v: done / tasks.length, duration: 0.4, ease: 'power2.out',
-        onUpdate: () => gsap.set(fill, { scaleX: progress.v }),
-      });
-    };
-    tasks.forEach((p) => p.then(bump));
-
-    const minTime = new Promise((r) => setTimeout(r, motionOK ? 700 : 0));
-    const maxTime = new Promise((r) => setTimeout(r, 2500));
-    const ready = Promise.race([Promise.all([...tasks, minTime]), maxTime]);
-
-    return ready.then(() => new Promise((resolve) => {
-      const tl = gsap.timeline({
-        onComplete: () => { root.classList.add('is-ready'); resolve(); },
-      });
-      tl.to(fill, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
-        .to('.preloader__inner', { opacity: 0, scale: 0.94, duration: 0.45, ease: 'power2.in' }, '+=0.1')
-        .to(pre, { yPercent: -100, duration: motionOK ? 0.8 : 0.01, ease: 'expo.inOut' }, '-=0.1');
-    }));
-  }
-
-  /* ------------------------------------------------------------------------
-     5. Hero — intro, parallax y streams
-     ------------------------------------------------------------------------ */
-  // Todos los títulos [data-split] se dividen; el del hero se anima en la intro
   const splits = motionOK ? $$('[data-split]').map((el) => ({ el, words: splitWords(el) })) : [];
-  const heroWords = splits.length ? splits[0].words : [];
-
-  function heroIntro() {
-    if (!motionOK) return;
-    gsap.set(heroWords, { yPercent: 110 });
-    gsap.set('.stream', { opacity: 0, x: -60 });
-
-    const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-    tl.to('.hero__eyebrow', { opacity: 1, y: 0, duration: 0.9, startAt: { y: 16 } })
-      .to(heroWords, {
-        yPercent: 0, duration: 1.1, stagger: 0.06,
-        onComplete: () => $('[data-split]').classList.add('is-revealed'), // libera el glow del recorte
-      }, '-=0.6')
-      .to('.hero__sub', { opacity: 1, y: 0, duration: 1, startAt: { y: 20 } }, '-=0.75')
-      .to('.bilingual', { opacity: 1, y: 0, scale: 1, duration: 0.8, startAt: { y: 14, scale: 0.94 }, ease: 'back.out(1.8)' }, '-=0.7')
-      .to('.hero__ctas', { opacity: 1, y: 0, duration: 1, startAt: { y: 20 } }, '-=0.8')
-      .to('.stream', { opacity: 1, x: 0, duration: 2.2, stagger: 0.15, ease: 'power3.out' }, 0.2)
-      .to('.colibri', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0.5)
-      .fromTo('.colibri__img', { x: 120, y: -40, rotation: -12, scale: 0.8 },
-        { x: 0, y: 0, rotation: 0, scale: 1, duration: 1.6, ease: 'expo.out' }, 0.5);
-
-    // Deriva continua y sutil de las estelas de luz
-    gsap.to('.stream', {
-      x: 40, duration: 8, ease: 'sine.inOut', yoyo: true, repeat: -1, stagger: { each: 1.3 },
-    });
-  }
-
-  function heroParallax() {
-    if (!motionOK) return;
-    $$('[data-parallax]').forEach((el) => {
-      gsap.to(el, {
-        yPercent: parseFloat(el.dataset.parallax),
-        ease: 'none',
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-      });
-    });
-    gsap.to('[data-parallax-content]', {
-      y: () => (isMobile() ? 40 : 90),
-      opacity: 0.15,
-      ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true, invalidateOnRefresh: true },
-    });
-  }
 
   /* ------------------------------------------------------------------------
-     6. Partículas de luz en canvas (estela del colibrí y del cursor)
+     6. Partículas de luz en canvas (estela del cursor)
         Ligero: un sprite pre-renderizado + composición aditiva.
      ------------------------------------------------------------------------ */
   function makeSprite(inner, outer) {
@@ -228,7 +144,7 @@
     const ctx = canvas.getContext('2d');
     const sprites = [
       makeSprite('rgba(255,255,255,1)', 'rgba(0,229,255,0.85)'),
-      makeSprite('rgba(210,255,255,1)', 'rgba(0,131,143,0.8)'),
+      makeSprite('rgba(255,235,190,1)', anchorToPage ? 'rgba(255,157,57,0.85)' : 'rgba(0,131,143,0.8)'),
       makeSprite('rgba(255,255,255,1)', 'rgba(224,224,224,0.6)'),
     ];
     const parts = [];
@@ -299,22 +215,24 @@
   }
 
   /* ------------------------------------------------------------------------
-     7. Colibrí — vuelo por toda la página (MotionPath + ScrollTrigger scrub)
-        Despega del hero, zigzaguea entre secciones dejando estela de luz,
-        mira hacia donde vuela, se inclina en las curvas y aterriza en el CTA.
+     8. Cursor de luz — punto, anillo con inercia, halo y polvo de estrellas
      ------------------------------------------------------------------------ */
-  function colibriFlight() {
-    if (!motionOK) return;
-    const bird = $('#colibri');
-    const flip = $('.colibri__flip');
-    const img = $('.colibri__img');
-    const startPerch = $('#colibri-perch');
-    const endPerch = $('#colibri-end');
+  function phoenixFlight() {
+    if (!motionOK || !window.MotionPathPlugin) return;
+    const bird = $('#phoenix-flight');
+    const flip = $('.phoenix-flight__flip');
+    const img = $('.phoenix-flight__rig');
+    const leftWing = $('.phoenix-flight__wing--left');
+    const rightWing = $('.phoenix-flight__wing--right');
+    const tail = $('.phoenix-flight__tail');
+    const aura = $('.phoenix-flight__aura');
+    const startPerch = $('#phoenix-flight-perch');
+    const endPerch = $('#phoenix-flight-end');
     const cta = $('.cta');
     const trailCanvas = $('#fx-trail');
     if (!bird || !startPerch || !endPerch || !cta) return;
 
-    const ASPECT = 707 / 900;
+    const ASPECT = 1;
     const fx = trailCanvas ? createFx(trailCanvas, { max: isMobile() ? 70 : 220, anchorToPage: true }) : null;
 
     // Recorrido: fracciones del área libre del viewport (x, y)
@@ -323,7 +241,7 @@
       mobile: [[1, 0.5], [0.55, 0.2], [1, 0.7], [0.6, 0.35]],
     };
 
-    const state = { raw: null, baseW: 0, sMid: 0.5, sEnd: 1, endScroll: 1 };
+    const state = { startScroll: 0, raw: null, baseW: 0, sMid: 0.5, sEnd: 1, endScroll: 1 };
     const prog = { p: 0 };
 
     const compute = () => {
@@ -335,6 +253,8 @@
       const header = $('#header').offsetHeight;
 
       const sr = startPerch.getBoundingClientRect();
+      const hero = $('#inicio');
+      state.startScroll = hero.offsetTop + hero.offsetHeight - vh;
       state.baseW = sr.width;
       bird.style.width = `${sr.width}px`;
       const bh = sr.width * ASPECT;
@@ -353,7 +273,7 @@
       const maxY = vh - bhm - 24;
       Object.assign(state, { minX, maxX, minY, maxY });
 
-      const pts = [{ x: sr.left, y: sr.top + sy }];
+      const pts = [{ x: sr.left, y: sr.top + sy - state.startScroll }];
       (mobile ? WAYPOINTS.mobile : WAYPOINTS.desktop).forEach(([fxp, fyp]) => {
         pts.push({ x: minX + fxp * (maxX - minX), y: minY + fyp * (maxY - minY) });
       });
@@ -368,13 +288,21 @@
     gsap.to(prog, {
       p: 1,
       ease: 'none',
-      scrollTrigger: { start: 0, end: () => state.endScroll, scrub: 1.2, invalidateOnRefresh: true },
+      scrollTrigger: { start: () => state.startScroll, end: () => state.endScroll, scrub: 1.2, invalidateOnRefresh: true },
     });
 
-    // Vuelo estacionario del <img>: flotación, balanceo y aleteo
-    gsap.to(img, { y: '-=12', duration: 1.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.1 });
-    gsap.to(img, { rotation: 3, duration: 2.6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 2.1 });
-    const flap = gsap.to(img, { scaleY: 0.96, duration: 0.09, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+    // Articulated wings and trailing tail; phase follows real elapsed time.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const setLeft = gsap.quickSetter(leftWing, 'rotation', 'deg');
+    const setRight = gsap.quickSetter(rightWing, 'rotation', 'deg');
+    const setLeftScale = gsap.quickSetter(leftWing, 'scaleX');
+    const setRightScale = gsap.quickSetter(rightWing, 'scaleX');
+    const setTail = gsap.quickSetter(tail, 'rotation', 'deg');
+    const setBob = gsap.quickSetter(img, 'y', 'px');
+    const setAura = gsap.quickSetter(aura, 'opacity');
+    let phase = 0;
+    let energy = 0;
+    let emission = 0;
 
     const tiltTo = gsap.quickTo(flip, 'rotation', { duration: 0.5, ease: 'power3.out' });
     gsap.set(bird, { transformOrigin: '0 0' });
@@ -391,12 +319,19 @@
     let facing = 1;
 
     gsap.ticker.add((time, deltaMs) => {
+      const visible = window.scrollY >= state.startScroll - 1 && window.scrollY < state.endScroll + window.innerHeight && !reduceMotion.matches && !document.hidden;
+      bird.style.opacity = visible ? '1' : '0';
+      trailCanvas.style.visibility = visible ? 'visible' : 'hidden';
+      if (!visible) { lastX = null; lastY = null; vx = vy = 0; return; }
       const dt = Math.min(deltaMs / 1000, 0.05);
       const p = prog.p;
       const pos = MotionPathPlugin.getPositionOnPath(state.raw, gsap.utils.clamp(0, 1, p), false);
       const landedOffset = Math.max(0, window.scrollY - state.endScroll);
       let x = pos.x;
       let y = pos.y - landedOffset;
+      const airborne = Math.sin(Math.PI * p);
+      x += Math.sin(time * 1.8 + p * 24) * (isMobile() ? 7 : 18) * airborne;
+      y += Math.cos(time * 2.2 + p * 18) * 12 * airborne;
       // En pleno vuelo, nunca salir de pantalla ni meterse bajo el header
       if (p > 0.12 && p < 0.88) {
         x = gsap.utils.clamp(state.minX, state.maxX, x);
@@ -413,8 +348,9 @@
 
       // Velocidad sobre la ruta (el scroll tras aterrizar no cuenta como vuelo)
       if (lastX !== null) {
-        vx = vx * 0.82 + (pos.x - lastX) * 0.18;
-        vy = vy * 0.82 + (pos.y - lastY) * 0.18;
+        const smoothing = 1 - Math.exp(-dt * 12);
+        vx += ((pos.x - lastX) / Math.max(dt * 60, .1) - vx) * smoothing;
+        vy += ((pos.y - lastY) / Math.max(dt * 60, .1) - vy) * smoothing;
       }
       lastX = pos.x;
       lastY = pos.y;
@@ -426,28 +362,36 @@
       else if (vx > 0.8 && facing === -1) { facing = 1; gsap.to(flip, { scaleX: 1, duration: 0.35, ease: 'power2.out' }); }
 
       // Inclinación en las curvas y aleteo según velocidad
-      tiltTo(gsap.utils.clamp(-28, 28, vy * 2.4 * facing));
+      tiltTo(gsap.utils.clamp(-32, 32, vy * 2.8 * facing + Math.sin(time * 1.6) * 5 * airborne));
       const speed = Math.hypot(vx, vy);
-      flap.timeScale(1 + Math.min(speed * 0.25, 2.5));
+      energy += (Math.min(speed / 10, 1) - energy) * (1 - Math.exp(-dt * 5));
+      phase += dt * (5 + energy * 8);
+      const beat = Math.sin(phase);
+      setLeft(-beat * (7 + energy * 7));
+      setRight(beat * (7 + energy * 7));
+      setLeftScale(1 - (beat + 1) * (.045 + energy * .065));
+      setRightScale(1 - (beat + 1) * (.045 + energy * .065));
+      setTail(Math.sin(phase * .55 - .8) * (5 + energy * 7));
+      setBob(Math.sin(phase - .6) * (3 + energy * 3));
+      setAura(.35 + energy * .5 + (beat + 1) * .07);
 
       // Estela de luz desde la cola
       if (fx) {
         const w = state.baseW * s;
         const h = w * ASPECT;
-        const tx = x + (facing === 1 ? 0.12 : 0.88) * w;
-        const ty = y + 0.78 * h;
-        const n = Math.min(isMobile() ? 2 : 5, Math.floor(speed * 0.35)) + (Math.random() < 0.25 ? 1 : 0);
+        const tx = x + .5 * w;
+        const ty = y + .86 * h;
+        emission += dt * (8 + energy * (isMobile() ? 45 : 100));
+        const n = Math.min(6, Math.floor(emission));
+        emission -= n;
         if (n > 0 && bird.style.opacity !== '0') {
-          fx.emit(tx, ty, n, { speed: 18, vx: -vx * 8, vy: -vy * 8, life: 1.1, size: 2.6, lift: -6, jitter: 10 });
+          fx.emit(tx, ty, n, { speed: 25 + energy * 35, vx: -vx * 10, vy: -vy * 10 + 18, life: 1.3, size: 2.4 + energy * 1.8, lift: -12, jitter: 12 });
         }
         fx.step(dt);
       }
     });
   }
 
-  /* ------------------------------------------------------------------------
-     8. Cursor de luz — punto, anillo con inercia, halo y polvo de estrellas
-     ------------------------------------------------------------------------ */
   function cursorFx() {
     if (!motionOK || !finePointer) return;
     root.classList.add('custom-cursor');
@@ -554,7 +498,7 @@
   function sectionReveals() {
     if (!motionOK) return;
 
-    splits.slice(1).forEach(({ el, words }) => {
+    splits.forEach(({ el, words }) => {
       gsap.set(words, { yPercent: 110 });
       gsap.to(words, {
         yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.05,
@@ -586,7 +530,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     Tarjetas de servicios — identidad colibrí
+     Tarjetas de servicios — identidad de marca
      Caída con estela → aterrizaje con chispas y barrido de luz →
      borde de luz girando + escena animada en bucle (solo en pantalla)
      ------------------------------------------------------------------------ */
@@ -1029,11 +973,10 @@
   /* ------------------------------------------------------------------------
      Arranque
      ------------------------------------------------------------------------ */
-  runPreloader().then(() => {
+  Promise.resolve().then(() => {
+    root.classList.add('is-ready');
     lenis?.start();
-    heroIntro();
-    heroParallax();
-    colibriFlight();
+    phoenixFlight();
     magnetic();
     cursorFx();
     dividers();

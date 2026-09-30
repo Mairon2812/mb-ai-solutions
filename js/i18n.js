@@ -39,6 +39,10 @@
 
   /* ---------- 3. Traducciones (clave = texto en español, normalizado) ---------- */
   const EN = {
+    'Todo negocio puede renacer': 'Every business can be reborn',
+    'El fénix emerge': 'The phoenix emerges',
+    'Descubre la transformación ↓': 'Discover the transformation ↓',
+    'Solicitar diagnóstico →': 'Request a consultation →',
     // Navegación y hero
     'Saltar al contenido': 'Skip to content',
     'Servicios': 'Services',
@@ -231,7 +235,6 @@
     'Abrir menú': 'Open menu', 'Cerrar menú': 'Close menu', 'Principal': 'Main',
     'Bajar a la siguiente sección': 'Scroll to next section',
     'Nichos que atendemos': 'Industries we serve',
-    'Espacio de trabajo de MB AI SOLUTIONS con el logo del colibrí iluminado en la pared': 'MB AI SOLUTIONS workspace with the illuminated hummingbird logo on the wall',
     'Conversación con el asistente': 'Conversation with the assistant',
     'Preguntas sugeridas': 'Suggested questions',
     'Escríbele al asistente…': 'Message the assistant…',
