@@ -45,3 +45,16 @@ Para ver el marco otra vez, borra `mb-phoenix-intro` de sessionStorage y recarga
 ## Idioma y precios
 
 Comprueba `?lang=es` y `?lang=en`, el selector CO/US en escritorio y móvil, la persistencia al recargar, precios COP/USD y mensajes de WhatsApp. En inglés, START debe mostrar $419, BUSINESS $839 y CUSTOM $1,379 USD. Los precios son referencias fijas, no cotizaciones de divisas en vivo.
+
+## Web de agencia
+
+- Visita Inicio, Soluciones, La agencia y Contacto en escritorio y móvil. Comprueba la página activa y los enlaces del pie.
+- Cambia el sector en el explorador; verifica el flujo y que la selección llegue a Contacto.
+- Completa el formulario, prepara la consulta, edítala y comprueba la vista previa y el enlace a WhatsApp. No se envía automáticamente.
+- Abre el menú móvil con teclado, recorre sus enlaces con Tab y ciérralo con Escape.
+- Abre las preguntas frecuentes y prueba ambos idiomas. Verifica START $900.000 COP / $419 USD.
+- Bloquea los CDN: menú, explorador, formulario y preguntas frecuentes deben seguir funcionando.
+
+### Verificación realizada el 2 de octubre de 2026
+
+Revisión en Edge: las cuatro páginas en escritorio (1440 × 1000) y móvil (390 × 844), sin desbordamiento horizontal. Se comprobaron español/inglés, precios COP/USD, selección de sector, transferencia al formulario, vista previa y edición, preguntas frecuentes y recorrido circular del menú con Tab/Shift+Tab y cierre con Escape. Se probaron las interacciones con los CDN bloqueados y movimiento reducido; la consola conservó su respuesta preparada de precios con movimiento normal. Se revisaron capturas y se corrigió la proporción del logo de la agencia. Estructura HTML, IDs únicos, enlaces locales, anclas, sintaxis JavaScript y sitemap validados. Estas comprobaciones locales no verifican la disponibilidad remota de Gemini ni el despliegue de GitHub Pages.

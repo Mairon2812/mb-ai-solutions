@@ -97,11 +97,12 @@ La versión inglesa publica START / MB AI AGENT desde **$419 USD**, BUSINESS des
 
 ## 7. Canal de adquisición
 
-La web funciona como **sitio web + catálogo de servicios + herramienta comercial + captador de leads**:
+La web se organiza como sitio de agencia con **Inicio, Soluciones, La agencia y Contacto**:
 
 - Identidad visual del **fénix**: renacer y transformación, logo multicolor, intro en video y experiencia cinematográfica.
 - Versiones español/COP e inglés/USD con selector visible y mensajes de WhatsApp adaptados al idioma.
-- Cada llamado a la acción abre WhatsApp con un mensaje distinto según el origen (paquete, servicio o sección), para saber qué le interesa al cliente desde el primer mensaje.
+- El explorador por sector muestra aplicaciones posibles y lleva la selección al formulario de contacto.
+- El formulario prepara una consulta con vista previa y edición antes de continuar en WhatsApp. Los CTA comerciales de servicios y paquetes mantienen mensajes específicos según el origen.
 - La **consola IA** de la web (Google Gemini) responde dudas y arma un **plan de 3 ideas** para el negocio del visitante, con botón directo a WhatsApp.
 - CTA principal: **Solicitar diagnóstico**. Secundario: **Quiero automatizar mi negocio**.
 

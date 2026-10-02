@@ -110,7 +110,7 @@ MB AI AGENT: rango orientativo $419–$1,139; implementaciones avanzadas $1,139�
 
 ## El sitio web
 
-Una sola página que funciona como **sitio web + catálogo de servicios + herramienta comercial + captador de leads**. Todos los llamados a la acción terminan en WhatsApp con un mensaje distinto según el origen (paquete, servicio o sección).
+Web de agencia con cuatro páginas: **Inicio**, **Soluciones**, **La agencia** y **Contacto**. El inicio presenta la marca, un explorador interactivo por sector y la consola IA. Las páginas interiores reúnen el catálogo, precios, fundador y metodología. El formulario de contacto prepara una consulta con vista previa para continuar en WhatsApp; no envía mensajes automáticamente ni almacena los datos en un servidor.
 
 **Identidad actual:** fénix multicolor, intro en video y hero cinematográfico controlado por scroll. Las capturas anteriores de `.github/assets/` son históricas y no representan el diseño actual.
 
@@ -119,6 +119,9 @@ Una sola página que funciona como **sitio web + catálogo de servicios + herram
 - 🤖 **Consola IA real** ([pruébala](https://mairon2812.github.io/mb-ai-solutions/#consola-ia)): responde con Google Gemini, solo sobre MB AI SOLUTIONS, y arma un **plan de IA de 3 ideas** para el negocio del visitante con botón directo a WhatsApp. Si la IA no está disponible, usa respuestas preparadas.
 - 🦋 **Mariposa Morpho guía:** vuela hacia la cámara con un letrero y se posa en la consola para invitar a usar la IA.
 - 🔥 **Fénix animado:** intro con video y marco multicolor, secuencia de 80 frames HD en el hero y vuelo entre secciones con alas, cola y estela. La intro se puede saltar con el botón Entrar o Escape.
+- 🧭 **Navegación de agencia:** páginas separadas, estado activo, enlaces regionales y menú móvil con Escape y navegación por teclado.
+- 🛠️ **Explorador por sector:** ejemplos de flujos para tiendas, restaurantes, barberías/salones e inmobiliarias. El sector elegido pasa al formulario de contacto.
+- 📝 **Consulta guiada:** validación, progreso, vista previa y edición antes de continuar en WhatsApp; preguntas frecuentes desplegables.
 - 🌎 **Español/COP e inglés/USD:** selector CO/US visible también en móvil; detección inicial por zona horaria de Estados Unidos, preferencia guardada y enlaces `?lang=es` / `?lang=en`.
 - ✨ **Tarjetas de servicios** que caen con chispas y escenas animadas; conversación de ejemplo de MB AI AGENT.
 - 🌊 **Océano cibernético** en el footer que reacciona al puntero.
@@ -141,11 +144,15 @@ HTML, CSS y JavaScript vanilla, sin paso de build; librerías por CDN. La IA pas
 ### Estructura
 
 ```
-├── index.html            # Toda la página (SEO, secciones, precios, CTAs)
-├── css/                  # styles.css, phoenix.css e intro-universe.css
+├── index.html            # Inicio, fénix, explorador y consola IA
+├── soluciones.html       # Servicios, MB AI AGENT, precios y preguntas frecuentes
+├── agencia.html          # Fundador, empresa y metodología
+├── contacto.html         # Formulario con vista previa para WhatsApp
+├── css/                  # styles.css, phoenix.css, intro-universe.css y agency.css
 ├── js/
 │   ├── main.js           # Animaciones, tarjetas, vuelo del fénix y cursor
 │   ├── phoenix.js        # Intro en video y secuencia del hero
+│   ├── agency.js         # Menú, explorador, formulario y navegación regional
 │   ├── i18n.js           # Idioma, precios COP/USD y mensajes regionales
 │   ├── console.js        # Consola IA (Gemini vía Worker + respuestas de respaldo)
 │   ├── guide.js          # Mariposa Morpho guía hacia la consola

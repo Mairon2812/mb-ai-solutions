@@ -14,7 +14,7 @@
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
-  let closeNav = () => {};
+  let closeNav = () => window.MB_CLOSE_NAV?.();
 
   // Sin GSAP (CDN caído) o con reduced-motion: todo visible y estático
   if (!hasGsap) {
@@ -64,7 +64,7 @@
   function initNav(lenisRef) {
     const toggle = $('#nav-toggle');
     const nav = $('#nav');
-    if (!toggle || !nav) return;
+    if (!toggle || !nav || nav.hasAttribute('data-agency-nav')) return;
 
     const setOpen = (open) => {
       toggle.setAttribute('aria-expanded', String(open));
