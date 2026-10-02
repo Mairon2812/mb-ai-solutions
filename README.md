@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/assets/banner.webp" alt="MB AI SOLUTIONS — Transformamos negocios con Inteligencia Artificial" width="100%">
+<img src="assets/logo-fenix-fullcolor-transparente.png" alt="MB AI SOLUTIONS — identidad fénix" width="280">
 
 # MB AI SOLUTIONS
 
@@ -17,6 +17,8 @@ Diseñamos e implementamos agentes inteligentes, automatizaciones, integraciones
 
 ---
 
+**Actualizado: 2 de octubre de 2026.** Información comercial y técnica contrastada con la web y los archivos actuales del repositorio.
+
 ## En 30 segundos
 
 **MB AI SOLUTIONS ayuda a negocios a automatizar y digitalizar su operación mediante IA, integraciones y desarrollo tecnológico.**
@@ -24,6 +26,7 @@ Diseñamos e implementamos agentes inteligentes, automatizaciones, integraciones
 Muchos negocios pierden horas respondiendo las mismas preguntas, revisando inventarios a mano, copiando información entre herramientas o contestando mensajes fuera del horario. Nosotros **convertimos esos procesos repetitivos en flujos digitales e inteligentes**.
 
 - **Mercado inicial:** pequeñas y medianas empresas de Yopal, Casanare — restaurantes, boutiques, tiendas, ferreterías, barberías y salones, inmobiliarias, negocios de servicios y comercios que quieren digitalizarse.
+- **Presencia internacional:** versión de la web en inglés con precios de referencia en USD para Estados Unidos.
 - **Producto principal:** **MB AI AGENT**, agentes inteligentes personalizados para empresas.
 - **Siguiente paso:** [solicitar un diagnóstico](https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico%20para%20mi%20negocio.).
 
@@ -32,8 +35,6 @@ Muchos negocios pierden horas respondiendo las mismas preguntas, revisando inven
 ---
 
 ## Producto principal: MB AI AGENT
-
-<img src=".github/assets/desk-agent.webp" alt="Sección MB AI AGENT de la web" width="100%">
 
 Un agente inteligente personalizado para tu negocio que puede atender consultas, responder preguntas frecuentes, consultar información, capturar clientes, apoyar procesos comerciales y automatizar tareas repetitivas.
 
@@ -68,6 +69,23 @@ Un agente inteligente personalizado para tu negocio que puede atender consultas,
 >
 > **Plazos:** implementaciones normalmente de 1 a 4 semanas, dependiendo del alcance, la complejidad y las integraciones. El plazo definitivo se establece después del diagnóstico.
 
+## Versión para Estados Unidos
+
+La web publica referencias comerciales en USD; no realiza una conversión de divisas en tiempo real. Los importes se mantienen en `js/i18n.js`. La versión inglesa indica impuestos incluidos y mantiene los costos de terceros por separado.
+
+| Oferta | Desde USD |
+|---|---|
+| MB AI AGENT / START | $419 |
+| BUSINESS | $839 |
+| CUSTOM | $1,379 |
+| Automatización / digitalización / landing | $239 |
+| Integraciones | $179 |
+| Consultoría — diagnóstico | $69 |
+| Web empresarial / e-commerce / dashboard / aplicación | $479 / $719 / $899 / $1,379 |
+| MB AI CARE — BASIC / BUSINESS / PRO | $95 / $169 / $275 al mes |
+
+MB AI AGENT: rango orientativo $419–$1,139; implementaciones avanzadas $1,139–$2,279+ USD. El alcance y la cotización final se acuerdan tras el diagnóstico.
+
 ## Cómo trabajamos
 
 `01 Diagnóstico` → `02 Diseño` → `03 Implementación` → `04 Pruebas` → `05 Capacitación` → `06 Soporte`
@@ -94,35 +112,17 @@ Un agente inteligente personalizado para tu negocio que puede atender consultas,
 
 Una sola página que funciona como **sitio web + catálogo de servicios + herramienta comercial + captador de leads**. Todos los llamados a la acción terminan en WhatsApp con un mensaje distinto según el origen (paquete, servicio o sección).
 
-<table>
-  <tr>
-    <td width="50%"><img src=".github/assets/desk-hero.webp" alt="Hero"></td>
-    <td width="50%"><img src=".github/assets/desk-problems.webp" alt="Problemas que resolvemos"></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src=".github/assets/desk-services.webp" alt="Servicios complementarios con precios"></td>
-    <td width="50%"><img src=".github/assets/desk-pricing.webp" alt="Paquetes START, BUSINESS y CUSTOM"></td>
-  </tr>
-  <tr>
-    <td width="50%"><img src=".github/assets/desk-morpho.webp" alt="Mariposa Morpho invitando a usar la IA"></td>
-    <td width="50%"><img src=".github/assets/desk-footer.webp" alt="Footer con océano cibernético"></td>
-  </tr>
-</table>
-
-<p align="center">
-  <img src=".github/assets/mobile-hero.webp" alt="Vista móvil: hero" width="240">
-  &nbsp;&nbsp;
-  <img src=".github/assets/mobile-pricing.webp" alt="Vista móvil: precios" width="240">
-</p>
+**Identidad actual:** fénix multicolor, intro en video y hero cinematográfico controlado por scroll. Las capturas anteriores de `.github/assets/` son históricas y no representan el diseño actual.
 
 **Lo que tiene:**
 
 - 🤖 **Consola IA real** ([pruébala](https://mairon2812.github.io/mb-ai-solutions/#consola-ia)): responde con Google Gemini, solo sobre MB AI SOLUTIONS, y arma un **plan de IA de 3 ideas** para el negocio del visitante con botón directo a WhatsApp. Si la IA no está disponible, usa respuestas preparadas.
 - 🦋 **Mariposa Morpho guía:** vuela hacia la cámara con un letrero y se posa en la consola para invitar a usar la IA.
-- 🐦 **Vuelo del colibrí** por toda la página siguiendo el scroll, con estela de luz.
+- 🔥 **Fénix animado:** intro con video y marco multicolor, secuencia de 80 frames HD en el hero y vuelo entre secciones con alas, cola y estela. La intro se puede saltar con el botón Entrar o Escape.
+- 🌎 **Español/COP e inglés/USD:** selector CO/US visible también en móvil; detección inicial por zona horaria de Estados Unidos, preferencia guardada y enlaces `?lang=es` / `?lang=en`.
 - ✨ **Tarjetas de servicios** que caen con chispas y escenas animadas; conversación de ejemplo de MB AI AGENT.
 - 🌊 **Océano cibernético** en el footer que reacciona al puntero.
-- 📱 **Mobile-first**, ♿ **accesible** (teclado, lectores de pantalla y `prefers-reduced-motion`) y ⚡ **liviana** (solo `transform`/`opacity`, animaciones pausadas fuera de pantalla, imágenes WebP).
+- 📱 **Mobile-first**, ♿ **accesible** (teclado, lectores de pantalla y `prefers-reduced-motion`) y ⚡ **liviana** (animaciones adaptadas al movimiento reducido, caché de frames limitada e imágenes WebP).
 
 ### Stack
 
@@ -142,16 +142,19 @@ HTML, CSS y JavaScript vanilla, sin paso de build; librerías por CDN. La IA pas
 
 ```
 ├── index.html            # Toda la página (SEO, secciones, precios, CTAs)
-├── css/styles.css        # Design system en variables CSS + componentes
+├── css/                  # styles.css, phoenix.css e intro-universe.css
 ├── js/
-│   ├── main.js           # Animaciones: preloader, reveals, tarjetas, colibrí, cursor
+│   ├── main.js           # Animaciones, tarjetas, vuelo del fénix y cursor
+│   ├── phoenix.js        # Intro en video y secuencia del hero
+│   ├── i18n.js           # Idioma, precios COP/USD y mensajes regionales
 │   ├── console.js        # Consola IA (Gemini vía Worker + respuestas de respaldo)
 │   ├── guide.js          # Mariposa Morpho guía hacia la consola
 │   └── sea.js            # Océano cibernético del footer
 ├── worker/               # Cloudflare Worker: proxy seguro hacia Gemini
 │   ├── src/index.js
 │   └── wrangler.toml
-└── assets/img/           # Imágenes optimizadas (WebP)
+├── assets/               # Logos fénix, video, frames y recursos visuales
+└── PRUEBAS-FENIX.md       # Verificación manual de la experiencia actual
 ```
 
 ### Ejecutarlo en local
@@ -176,14 +179,20 @@ npx wrangler deploy
 
 ---
 
+### Validación y publicación
+
+Consulta [PRUEBAS-FENIX.md](PRUEBAS-FENIX.md) para comprobar intro, scroll, móvil, movimiento reducido y fallos de carga. Verifica ambos idiomas antes de publicar. GitHub Pages sirve los archivos estáticos; el Worker de IA se despliega de forma independiente. El código del proxy no confirma por sí solo la disponibilidad del servicio remoto.
+
 ## Identidad de marca
 
 | Rol | Color | HEX |
 |---|---|---|
-| Primario | Turquesa brillante | ![#00E5FF](https://img.shields.io/badge/-%2300E5FF-00E5FF?style=flat-square) |
+| Primario | Turquesa brillante | ![#35E0D0](https://img.shields.io/badge/-%2335E0D0-00E5FF?style=flat-square) |
 | Secundario | Verde azulado profundo | ![#00838F](https://img.shields.io/badge/-%2300838F-00838F?style=flat-square) |
 | Acento | Plata metálico | ![#E0E0E0](https://img.shields.io/badge/-%23E0E0E0-E0E0E0?style=flat-square) |
-| Fondo | Azul marino oscuro | ![#121212](https://img.shields.io/badge/-%23121212-121212?style=flat-square) |
+| Fondo | Azul marino oscuro | ![#05070F](https://img.shields.io/badge/-%2305070F-121212?style=flat-square) |
+
+**Símbolo:** fénix, asociado al renacer y la transformación de los negocios. Logo principal multicolor: `assets/logo-fenix-fullcolor-transparente.png`; variante turquesa: `assets/logo-fenix-turquesa-transparente.png`. Fondo navy con luces turquesa, azul, violeta y ámbar.
 
 **Tipografía:** Inter Bold / Inter Regular. **MB** = *Mairon Baron* (el origen) y *Modern Business* (hacia dónde crece la marca).
 

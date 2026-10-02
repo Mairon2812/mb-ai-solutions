@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/assets/banner.webp" alt="MB AI SOLUTIONS" width="100%">
+<img src="assets/logo-fenix-fullcolor-transparente.png" alt="MB AI SOLUTIONS — fénix" width="280">
 
 # Propuesta de negocio — MB AI SOLUTIONS
 
@@ -11,6 +11,8 @@
 </div>
 
 ---
+
+**Actualizado: 2 de octubre de 2026.**
 
 ## 1. Resumen
 
@@ -55,6 +57,7 @@ Un agente inteligente personalizado que puede atender consultas, responder pregu
 ## 4. Mercado y cliente ideal
 
 - **Mercado inicial:** Yopal, Casanare.
+- **Canal para Estados Unidos:** web en inglés y precios de referencia en USD, con selector de región. Esta presencia comercial no acredita clientes ni una operación constituida en ese país.
 - **Clientes:** pequeñas y medianas empresas, comercios, restaurantes, boutiques, tiendas, ferreterías, barberías y salones, inmobiliarias, negocios de servicios y empresas locales que quieren digitalizarse.
 - **Señal de que nos necesita:** muchos mensajes por WhatsApp, respuestas lentas o manuales, información dispersa y tareas que se repiten todos los días.
 
@@ -77,6 +80,10 @@ Precios de referencia para el mercado inicial de Yopal. Siempre se comunican com
 
 **Costos de terceros:** proveedores de IA, WhatsApp/Meta, hosting, dominios, automatizadores y servicios en la nube pueden generar costos adicionales según el proveedor y el nivel de uso, y se cobran por separado.
 
+### Referencias para Estados Unidos
+
+La versión inglesa publica START / MB AI AGENT desde **$419 USD**, BUSINESS desde **$839 USD** y CUSTOM desde **$1,379 USD**. MB AI CARE: BASIC **$95**, BUSINESS **$169** y PRO **$275 USD/mes**. Los demás servicios y rangos se detallan en el [README](README.md#versión-para-estados-unidos); la fuente de importes de la web es `js/i18n.js`. Son referencias comerciales con impuestos incluidos según el texto publicado, sujetas al alcance y con servicios de terceros por separado.
+
 ## 6. Cómo trabajamos
 
 1. **Diagnóstico** — entendemos cómo funciona actualmente el negocio.
@@ -92,6 +99,8 @@ Precios de referencia para el mercado inicial de Yopal. Siempre se comunican com
 
 La web funciona como **sitio web + catálogo de servicios + herramienta comercial + captador de leads**:
 
+- Identidad visual del **fénix**: renacer y transformación, logo multicolor, intro en video y experiencia cinematográfica.
+- Versiones español/COP e inglés/USD con selector visible y mensajes de WhatsApp adaptados al idioma.
 - Cada llamado a la acción abre WhatsApp con un mensaje distinto según el origen (paquete, servicio o sección), para saber qué le interesa al cliente desde el primer mensaje.
 - La **consola IA** de la web (Google Gemini) responde dudas y arma un **plan de 3 ideas** para el negocio del visitante, con botón directo a WhatsApp.
 - CTA principal: **Solicitar diagnóstico**. Secundario: **Quiero automatizar mi negocio**.
@@ -108,7 +117,7 @@ La web funciona como **sitio web + catálogo de servicios + herramienta comercia
 
 ## 9. Etapa actual y hacia dónde vamos
 
-**Hoy (2026): validación en Yopal.** Un equipo pequeño, experto y rápido, con operación directa del fundador. Los casos de éxito y los resultados medibles se construyen con los primeros proyectos; por eso no publicamos cifras ni testimonios que todavía no existen.
+**Estado documentado al 2 de octubre de 2026:** validación en Yopal y web preparada para consultas desde Estados Unidos. Un equipo pequeño, experto y rápido, con operación directa del fundador. Los casos de éxito y los resultados medibles se construyen con los primeros proyectos; por eso no publicamos cifras ni testimonios que todavía no existen.
 
 **Hacia dónde vamos:**
 

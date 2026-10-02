@@ -1,5 +1,7 @@
 # Identidad fénix: prueba local
 
+Actualizado: 2 de octubre de 2026. Esta lista describe comprobaciones manuales pendientes de ejecutar al publicar; no es un certificado de pruebas realizadas.
+
 Desde la raíz del proyecto, ejecuta:
 
 ```powershell
@@ -18,7 +20,7 @@ Abre http://localhost:8000/. No requiere npm ni compilación.
 
 ## Recursos y publicación
 
-El logo principal es `assets/logo-fenix-turquesa-transparente.png`, proporcionado por el usuario, de 1600 × 1600 píxeles y con canal alfa real. Se usa directamente en navbar, hero, tarjetas, avatar, footer, favicon e icono de Apple. Sustituye al WebP provisional; no se aplican modos de mezcla.
+El logo principal es `assets/logo-fenix-turquesa-transparente.png`, proporcionado por el usuario, de 1600 × 1600 píxeles y con canal alfa real. Se conserva como variante turquesa. El logo principal actual es `assets/logo-fenix-fullcolor-transparente.png` (1254 × 1254), utilizado en navbar, hero, tarjetas, avatar, footer, favicon e icono de Apple. Sustituye al WebP provisional; no se aplican modos de mezcla.
 
 El video y los 80 frames se copiaron desde la carpeta de originales a `assets/intro-fenix-web.mp4` y `assets/frames/`. Las rutas del sitio son relativas y compatibles con un subdirectorio de GitHub Pages. Incluye estos recursos nuevos en el commit; los originales no son necesarios para ejecutar el sitio.
 
@@ -36,6 +38,10 @@ La intro y la secuencia viven en `js/phoenix.js` y `css/phoenix.css`, sin librer
 
 `css/intro-universe.css` añade auroras turquesa, azul, violeta y ámbar, circuitos, partículas, un borde luminoso y tarjetas animadas de agentes IA, automatizaciones y datos. El marco está fuera del video y no modifica el MP4. En móvil las tarjetas pasan debajo y el logo arriba; en horizontal compacto se simplifica para dejar espacio al video y al botón Entrar. No añade librerías.
 
-`assets/logo-fenix-fullcolor-transparente.png` es una edición con fondo transparente del full color original, conservado en `assets/logo-fenix-v2-fullcolor.webp`. Se usa en el marco; el logo principal turquesa sigue en la navegación y el resto del sitio.
+`assets/logo-fenix-fullcolor-transparente.png` es una edición con fondo transparente del full color original, conservado en `assets/logo-fenix-v2-fullcolor.webp`. Se usa en el marco; el mismo logo multicolor se utiliza ahora en la navegación y el resto del sitio; la variante turquesa se conserva como recurso.
 
 Para ver el marco otra vez, borra `mb-phoenix-intro` de sessionStorage y recarga. Comprueba escritorio, móvil vertical y horizontal, el botón Entrar y Escape. Con movimiento reducido se omite la intro como antes.
+
+## Idioma y precios
+
+Comprueba `?lang=es` y `?lang=en`, el selector CO/US en escritorio y móvil, la persistencia al recargar, precios COP/USD y mensajes de WhatsApp. En inglés, START debe mostrar $419, BUSINESS $839 y CUSTOM $1,379 USD. Los precios son referencias fijas, no cotizaciones de divisas en vivo.
