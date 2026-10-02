@@ -112,13 +112,14 @@ MB AI AGENT: rango orientativo $419–$1,139; implementaciones avanzadas $1,139�
 
 Web de agencia con cuatro páginas: **Inicio**, **Soluciones**, **La agencia** y **Contacto**. El inicio presenta la marca, un explorador interactivo por sector y la consola IA. Las páginas interiores reúnen el catálogo, precios, fundador y metodología. El formulario de contacto prepara una consulta con vista previa para continuar en WhatsApp; no envía mensajes automáticamente ni almacena los datos en un servidor.
 
-**Identidad actual:** fénix multicolor, intro en video y hero cinematográfico controlado por scroll. Las capturas anteriores de `.github/assets/` son históricas y no representan el diseño actual.
+**Identidad actual:** fénix multicolor, entrada interactiva por objetivos de automatización y hero cinematográfico controlado por scroll. Las capturas anteriores de `.github/assets/` son históricas y no representan el diseño actual.
 
 **Lo que tiene:**
 
 - 🤖 **Consola IA real** ([pruébala](https://mairon2812.github.io/mb-ai-solutions/#consola-ia)): responde con Google Gemini, solo sobre MB AI SOLUTIONS, y arma un **plan de IA de 3 ideas** para el negocio del visitante con botón directo a WhatsApp. Si la IA no está disponible, usa respuestas preparadas.
 - 🦋 **Mariposa Morpho guía:** vuela hacia la cámara con un letrero y se posa en la consola para invitar a usar la IA.
-- 🔥 **Fénix animado:** intro con video y marco multicolor, secuencia de 80 frames HD en el hero y vuelo entre secciones con alas, cola y estela. La intro se puede saltar con el botón Entrar o Escape.
+- 🔥 **Portal del fénix:** el visitante elige entre atención al cliente, tareas repetitivas e integración de herramientas. La vista previa explica un flujo posible; «Entrar con el fénix» anima el vuelo del fénix y un túnel hacia la agencia, donde aparece un enlace a la solución elegida. Se puede saltar o cerrar con Escape. Sin video, sin dependencias externas y una vez por sesión; los enlaces directos van a su contenido. Con movimiento reducido, la entrada es inmediata.
+- 🎬 **Hero y vuelo:** se conserva la secuencia de 80 frames HD del hero y el fénix entre secciones con alas, cola y estela.
 - 🧭 **Navegación de agencia:** páginas separadas, estado activo, enlaces regionales y menú móvil con Escape y navegación por teclado.
 - 🛠️ **Explorador por sector:** ejemplos de flujos para tiendas, restaurantes, barberías/salones e inmobiliarias. El sector elegido pasa al formulario de contacto.
 - 📝 **Consulta guiada:** validación, progreso, vista previa y edición antes de continuar en WhatsApp; preguntas frecuentes desplegables.
@@ -151,7 +152,8 @@ HTML, CSS y JavaScript vanilla, sin paso de build; librerías por CDN. La IA pas
 ├── css/                  # styles.css, phoenix.css, intro-universe.css y agency.css
 ├── js/
 │   ├── main.js           # Animaciones, tarjetas, vuelo del fénix y cursor
-│   ├── phoenix.js        # Intro en video y secuencia del hero
+│   ├── phoenix.js        # Secuencia cinematográfica del hero
+│   ├── entry.js          # Portal, objetivos, transición y entrada contextual
 │   ├── agency.js         # Menú, explorador, formulario y navegación regional
 │   ├── i18n.js           # Idioma, precios COP/USD y mensajes regionales
 │   ├── console.js        # Consola IA (Gemini vía Worker + respuestas de respaldo)
