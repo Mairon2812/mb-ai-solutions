@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;800&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; }
+  body {
+    width: 1280px; height: 640px; overflow: hidden; position: relative;
+    background: #121212; font-family: Inter, sans-serif; color: #E0E0E0;
+  }
+  .glow { position: absolute; border-radius: 50%; filter: blur(70px); }
+  .g1 { width: 760px; height: 760px; right: -220px; top: -260px; background: radial-gradient(circle, rgba(0,229,255,.28), transparent 65%); }
+  .g2 { width: 620px; height: 620px; left: -260px; bottom: -320px; background: radial-gradient(circle, rgba(0,131,143,.38), transparent 65%); }
+  svg.streams { position: absolute; inset: 0; opacity: .6; }
+  .bird { position: absolute; right: 40px; top: 70px; width: 560px; filter: drop-shadow(0 0 30px rgba(0,229,255,.45)); }
+  .content { position: absolute; left: 80px; top: 110px; width: 700px; }
+  .logo { width: 132px; filter: drop-shadow(0 0 16px rgba(0,229,255,.35)); }
+  .eyebrow { margin-top: 26px; font-size: 18px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #00E5FF; }
+  h1 { margin: 14px 0 0; font-size: 66px; line-height: 1.02; font-weight: 800; letter-spacing: -.035em; color: #fff; }
+  h1 span { color: #00E5FF; text-shadow: 0 0 30px rgba(0,229,255,.5); }
+  p { margin: 22px 0 0; font-size: 22px; color: #A3ABB0; max-width: 560px; line-height: 1.45; }
+</style>
+</head>
+<body>
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <svg class="streams" viewBox="0 0 1280 640">
+    <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#00E5FF" stop-opacity="0"/><stop offset=".5" stop-color="#00E5FF"/><stop offset="1" stop-color="#00838F" stop-opacity="0"/></linearGradient></defs>
+    <path d="M-40 560 C 260 430, 480 700, 780 500 S 1160 330, 1320 380" fill="none" stroke="url(#g)" stroke-width="1.6"/>
+    <path d="M-40 610 C 300 500, 540 720, 840 560 S 1180 420, 1320 450" fill="none" stroke="url(#g)" stroke-width=".9"/>
+  </svg>
+  <img class="bird" src="../assets/img/colibri-900.webp" alt="">
+  <div class="content">
+    <img class="logo" src="../assets/img/logo-full-320.webp" alt="">
+    <div class="eyebrow">IA para negocios — Yopal, Casanare</div>
+    <h1>Transformamos negocios con <span>Inteligencia Artificial</span></h1>
+    <p>MB AI AGENT, automatización, integraciones y digitalización para pymes.</p>
+  </div>
+</body>
+</html>

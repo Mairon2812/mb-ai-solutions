@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AtiendeSolo · Activa tu negocio</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',system-ui,sans-serif; background:#0B0F14; color:#F5F0E1; min-height:100vh; }
+  .bg { position:fixed; inset:0; background:radial-gradient(circle at 50% -10%, rgba(0,229,255,.10), transparent 55%); pointer-events:none; }
+  .wrap { max-width:620px; margin:0 auto; padding:28px 20px 60px; position:relative; }
+  .brand { text-align:center; margin-bottom:6px; }
+  .brand img { width:84px; }
+  .brand p { color:#00E5FF; font-size:12px; letter-spacing:4px; font-weight:700; margin-top:6px; }
+  h1 { text-align:center; font-size:26px; margin:14px 0 4px; }
+  .sub { text-align:center; color:#8A939E; font-size:14px; margin-bottom:22px; }
+  .progress { height:6px; background:rgba(255,255,255,.08); border-radius:99px; overflow:hidden; margin-bottom:8px; }
+  .progress i { display:block; height:100%; background:linear-gradient(90deg,#00E5FF,#7df9ff); width:20%; border-radius:99px; transition:width .5s cubic-bezier(.4,0,.2,1); }
+  .step-label { text-align:center; font-size:12px; color:#8A939E; letter-spacing:2px; margin-bottom:20px; }
+  .steps { position:relative; overflow:hidden; }
+  .step { display:none; animation:slideIn .45s cubic-bezier(.4,0,.2,1); }
+  .step.on { display:block; }
+  .step.back { animation-name:slideBack; }
+  @keyframes slideIn { from { opacity:0; transform:translateX(46px); } to { opacity:1; transform:none; } }
+  @keyframes slideBack { from { opacity:0; transform:translateX(-46px); } to { opacity:1; transform:none; } }
+  label.f { display:block; font-size:13px; color:#8A939E; margin:14px 0 6px; }
+  label.f b { color:#00E5FF; font-weight:400; }
+  input[type=text], input[type=tel], input[type=url], input[type=number], textarea, select {
+    width:100%; background:#141b24; border:1px solid #2a3644; color:#F5F0E1;
+    border-radius:12px; padding:14px; font-size:15px; outline:none; transition:border .25s, box-shadow .25s;
+  }
+  input:focus, textarea:focus, select:focus { border-color:#00E5FF; box-shadow:0 0 0 3px rgba(0,229,255,.15); }
+  select option { background:#141b24; }
+  textarea { min-height:80px; resize:vertical; }
+  .hint { font-size:12px; color:#8A939E; margin-top:4px; }
+  .seg { display:flex; gap:10px; }
+  .seg button { flex:1; padding:14px; border-radius:12px; border:1px solid #2a3644; background:#141b24; color:#8A939E; font-size:16px; font-weight:700; cursor:pointer; transition:all .25s; }
+  .seg button.sel { border-color:#00E5FF; color:#00E5FF; background:rgba(0,229,255,.08); box-shadow:0 0 18px rgba(0,229,255,.15); }
+  .checks { display:flex; flex-wrap:wrap; gap:8px; }
+  .checks button { padding:10px 14px; border-radius:999px; border:1px solid #2a3644; background:#141b24; color:#8A939E; cursor:pointer; font-size:14px; transition:all .2s; }
+  .checks button.sel { border-color:#00E5FF; color:#062a30; background:#00E5FF; font-weight:700; }
+  .timerow { display:flex; gap:10px; align-items:center; margin-top:8px; }
+  .timerow select { flex:1; }
+  .timerow span { color:#8A939E; }
+  .prow { display:grid; grid-template-columns:1fr 104px 118px 38px; gap:8px; margin-bottom:8px; animation:slideIn .3s; }
+  .prow input, .prow select { padding:12px 10px; font-size:14px; }
+  .pr-del { background:transparent; border:1px solid #ff6b6b; color:#ff6b6b; border-radius:10px; font-size:18px; cursor:pointer; }
+  .btn-add { width:100%; padding:13px; border-radius:12px; border:1.5px dashed rgba(0,229,255,.5); background:transparent; color:#00E5FF; font-size:15px; font-weight:700; cursor:pointer; margin-top:4px; }
+  .domgrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+  .drop { border:2px dashed #2a3644; border-radius:14px; padding:22px; text-align:center; cursor:pointer; transition:all .25s; margin-top:6px; }
+  .drop:hover, .drop.over { border-color:#00E5FF; background:rgba(0,229,255,.05); }
+  .drop input { display:none; }
+  .thumbs { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .thumbs img, .thumbs .filetag { width:64px; height:64px; border-radius:10px; object-fit:cover; border:1px solid rgba(0,229,255,.4); }
+  .thumbs .filetag { display:flex; align-items:center; justify-content:center; font-size:11px; color:#00E5FF; background:#141b24; padding:4px; text-align:center; overflow:hidden; }
+  .cond { overflow:hidden; max-height:0; opacity:0; transition:max-height .45s ease, opacity .35s; }
+  .cond.show { max-height:420px; opacity:1; }
+  .nav { display:flex; gap:12px; margin-top:26px; }
+  .nav button { flex:1; padding:16px; border-radius:14px; font-size:16px; font-weight:800; cursor:pointer; border:none; transition:transform .15s; }
+  .nav button:active { transform:scale(.97); }
+  .btn-next { background:#00E5FF; color:#062a30; }
+  .btn-back { background:transparent; color:#8A939E; border:1px solid #2a3644 !important; flex:.5 !important; }
+  .err { color:#ff6b6b; font-size:13px; margin-top:10px; display:none; }
+  #success { display:none; text-align:center; padding:40px 10px; animation:slideIn .5s; }
+  #success .check { width:96px; height:96px; border-radius:50%; background:rgba(0,229,255,.12); border:2px solid #00E5FF; display:flex; align-items:center; justify-content:center; font-size:44px; color:#00E5FF; margin:0 auto 20px; animation:pop .5s cubic-bezier(.2,1.6,.4,1); }
+  @keyframes pop { from { transform:scale(.4); opacity:0; } to { transform:scale(1); opacity:1; } }
+  #success h2 { color:#00E5FF; margin-bottom:10px; }
+  #success p { color:#8A939E; line-height:1.6; }
+  #sending { display:none; text-align:center; padding:60px 10px; }
+  .spin { width:54px; height:54px; border:4px solid rgba(0,229,255,.2); border-top-color:#00E5FF; border-radius:50%; margin:0 auto 18px; animation:sp 1s linear infinite; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="wrap">
+  <div class="brand">
+    <img src="logo.png" alt="MB" onerror="this.style.display='none'">
+    <p>ATIENDESOLO</p>
+  </div>
+
+  <div id="form-ui">
+    <h1>Activa tu negocio 🚀</h1>
+    <p class="sub">Toca, elige y sube fotos. Casi no tienes que escribir.</p>
+    <div class="progress"><i id="bar"></i></div>
+    <div class="step-label" id="steplabel">PASO 1 DE 5 · TU NEGOCIO</div>
+
+    <div class="steps" id="steps">
+
+      <div class="step on" data-step="1">
+        <label class="f">Nombre del negocio <b>*</b></label>
+        <input type="text" id="nombre" placeholder="Ej: Burger House">
+        <label class="f">Descripción corta <b>*</b></label>
+        <textarea id="descripcion" placeholder="Ej: Las hamburguesas más jugosas de Yopal."></textarea>
+        <label class="f">Dirección <b>*</b></label>
+        <input type="text" id="direccion" placeholder="Ej: Calle 40 #22-10, Yopal">
+        <label class="f">¿Qué días abres? <b>*</b> <span class="hint">toca los días</span></label>
+        <div class="checks" id="chk-dias">
+          <button type="button" data-d="Lun" class="sel">Lun</button><button type="button" data-d="Mar" class="sel">Mar</button><button type="button" data-d="Mié" class="sel">Mié</button><button type="button" data-d="Jue" class="sel">Jue</button><button type="button" data-d="Vie" class="sel">Vie</button><button type="button" data-d="Sáb" class="sel">Sáb</button><button type="button" data-d="Dom" class="sel">Dom</button>
+        </div>
+        <label class="f">Horario <b>*</b></label>
+        <div class="timerow">
+          <select id="h-open"></select><span>a</span><select id="h-close"></select>
+        </div>
+        <label class="f">Instagram / TikTok</label>
+        <input type="text" id="redes" placeholder="Ej: @minegocio">
+        <label class="f">Promociones activas</label>
+        <input type="text" id="promociones" placeholder="Ej: 2x1 los martes">
+      </div>
+
+      <div class="step" data-step="2">
+        <label class="f">¿Hacen domicilios? <b>*</b></label>
+        <div class="seg" id="seg-dom">
+          <button type="button" data-v="SI">Sí 🛵</button>
+          <button type="button" data-v="NO">No</button>
+        </div>
+        <div class="cond" id="cond-dom">
+          <div class="domgrid">
+            <div><label class="f">Pedido mínimo $</label><input type="number" id="dom-min" placeholder="15000"></div>
+            <div><label class="f">Zonas</label><input type="text" id="dom-zonas" placeholder="Ej: todo Yopal"></div>
+          </div>
+        </div>
+        <label class="f">Medios de pago <b>*</b> <span class="hint">toca los que aceptes</span></label>
+        <div class="checks" id="chk-pago">
+          <button type="button">Efectivo</button><button type="button">Nequi</button>
+          <button type="button">Daviplata</button><button type="button">Bancolombia</button>
+          <button type="button">Tarjeta</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="3">
+        <label class="f">¿Cómo nos pasas tu carta? <b>*</b></label>
+        <div class="seg" id="seg-carta">
+          <button type="button" data-v="rows" class="sel">✏️ Agregar productos</button>
+          <button type="button" data-v="file">📄 Subir archivo</button>
+        </div>
+        <div id="opt-rows">
+          <label class="f"><span class="hint">Agrega uno por uno, sin escribir párrafos</span></label>
+          <div id="prod-rows"></div>
+          <button type="button" class="btn-add" onclick="addRow()">+ Agregar producto</button>
+        </div>
+        <div id="opt-file" class="cond">
+          <label class="f"><span class="hint">Excel con tu menú, o foto/PDF de tu carta física</span></label>
+          <div class="drop" data-tipo="carta"><input type="file" accept="image/*,.pdf,.xlsx,.xls,.csv">📄 Toca para subir Excel, foto o PDF</div>
+          <div class="thumbs" id="th-carta"></div>
+        </div>
+      </div>
+
+      <div class="step" data-step="4">
+        <label class="f">Logo <span class="hint">(PNG o JPG)</span></label>
+        <div class="drop" data-tipo="logo"><input type="file" accept="image/*">🎨 Toca para subir tu logo</div>
+        <div class="thumbs" id="th-logo"></div>
+        <label class="f">Fotos de tus productos <span class="hint">(hasta 10)</span></label>
+        <div class="drop" data-tipo="fotos_productos"><input type="file" accept="image/*" multiple>📸 Toca para subir fotos</div>
+        <div class="thumbs" id="th-fotos_productos"></div>
+        <label class="f">Fotos del local <span class="hint">(hasta 5, opcional)</span></label>
+        <div class="drop" data-tipo="fotos_local"><input type="file" accept="image/*" multiple>🏠 Fotos del local</div>
+        <div class="thumbs" id="th-fotos_local"></div>
+        <label class="f">Videos <span class="hint">(hasta 3, opcional)</span></label>
+        <div class="drop" data-tipo="videos"><input type="file" accept="video/*" multiple>🎬 Videos del local o productos</div>
+        <div class="thumbs" id="th-videos"></div>
+        <label class="f">Colores de tu marca <span class="hint">(si tienes)</span></label>
+        <input type="text" id="colores" placeholder="Ej: rojo y negro">
+      </div>
+
+      <div class="step" data-step="5">
+        <label class="f">Tu nombre (contacto) <b>*</b></label>
+        <input type="text" id="contacto_nombre" placeholder="Ej: Carlos Pérez">
+        <label class="f">Tu WhatsApp personal <b>*</b></label>
+        <input type="tel" id="contacto_wa" placeholder="Ej: 3101234567">
+        <label class="f">WhatsApp del negocio <b>*</b></label>
+        <input type="tel" id="negocio_wa" placeholder="Ej: 3109876543">
+        <p class="hint">⚠️ Debe ser un número dedicado para la IA, sin la app de WhatsApp instalada.</p>
+        <label class="f">Algo que la IA NO debe decir o hacer</label>
+        <input type="text" id="restricciones" placeholder="Ej: no prometer domicilios gratis">
+        <label class="f">PIN para tu panel admin <span class="hint">(4 dígitos, opcional)</span></label>
+        <input type="tel" id="pin" maxlength="4" placeholder="Ej: 1234">
+      </div>
+
+    </div>
+
+    <div class="err" id="err"></div>
+    <div class="nav">
+      <button class="btn-back" id="btn-back" style="visibility:hidden" onclick="go(-1)">←</button>
+      <button class="btn-next" id="btn-next" onclick="go(1)">Siguiente →</button>
+    </div>
+  </div>
+
+  <div id="sending"><div class="spin"></div><p>Enviando tu información…</p></div>
+
+  <div id="success">
+    <div class="check">✓</div>
+    <h2>¡Listo, <span id="s-nombre"></span>! 🎉</h2>
+    <p>Recibimos todo. Ya estamos armando tu carta digital + tu IA.<br>Te escribimos por WhatsApp cuando esté lista (máx. 5 días hábiles).</p>
+  </div>
+</div>
+
+<script>
+/* ============ CONFIG ============ */
+const CONFIG = {
+  WEBHOOK: 'https://mb-ai-solutions.app.n8n.cloud/webhook/atiendesolo-onboarding',
+  MAX_MB: 15
+};
+const TITLES = {1:'PASO 1 DE 5 · TU NEGOCIO',2:'PASO 2 DE 5 · DOMICILIOS Y PAGOS',3:'PASO 3 DE 5 · TU CARTA',4:'PASO 4 DE 5 · MARCA Y FOTOS',5:'PASO 5 DE 5 · CONTACTO'};
+const CATS = ['Hamburguesas','Acompañamientos','Bebidas','Postres','Pizzas','Sushi','Otro'];
+
+let step = 1, back = false;
+const FILES = { logo:[], carta:[], fotos_productos:[], fotos_local:[], videos:[] };
+const $ = id => document.getElementById(id);
+const money = n => '$' + Number(n).toLocaleString('es-CO');
+
+// horas
+(function(){
+  const opts = [];
+  for(let h=6; h<=23; h++){
+    const ap = h<12?'am':'pm', hh = h>12?h-12:h;
+    opts.push(`<option ${h===11?'selected':''}>${hh}:00${ap}</option>`);
+  }
+  $('h-open').innerHTML = opts.join('');
+  $('h-close').innerHTML = opts.map(o=>o.replace('selected','')).join('').replace('>10:00pm<',' selected>10:00pm<');
+})();
+
+function err(t){ const e=$('err'); e.textContent=t; e.style.display=t?'block':'none'; }
+
+function validProducts(){
+  return [...document.querySelectorAll('.prow')].map(r=>({
+    nombre: r.querySelector('.pr-nombre').value.trim(),
+    precio: r.querySelector('.pr-precio').value.trim(),
+    cat: r.querySelector('.pr-cat').value
+  })).filter(p=>p.nombre && p.precio);
+}
+
+function go(d){
+  if(d>0){
+    err('');
+    if(step===1){
+      for(const id of ['nombre','descripcion','direccion'])
+        if(!$(id).value.trim()){ err('Te falta: '+$(id).previousElementSibling.textContent.replace(' *','')); $(id).focus(); return; }
+      if(!document.querySelectorAll('#chk-dias .sel').length){ err('Elige al menos un día que abres'); return; }
+    }
+    if(step===2){
+      if(!document.querySelector('#seg-dom .sel')){ err('Dinos si hacen domicilios'); return; }
+      if(!document.querySelectorAll('#chk-pago .sel').length){ err('Toca al menos un medio de pago'); return; }
+    }
+    if(step===3){
+      const modo = document.querySelector('#seg-carta .sel')?.dataset.v;
+      const okRows = validProducts().length>0, okFile = FILES.carta.length>0;
+      if(modo==='rows' && !okRows){ err('Agrega al menos un producto con nombre y precio'); return; }
+      if(modo==='file' && !okFile){ err('Sube tu archivo (Excel, foto o PDF)'); return; }
+    }
+    if(step===5){
+      for(const id of ['contacto_nombre','contacto_wa','negocio_wa'])
+        if(!$(id).value.trim()){ err('Te falta: '+$(id).previousElementSibling.textContent.replace(' *','')); $(id).focus(); return; }
+      submit(); return;
+    }
+  }
+  back = d<0;
+  document.querySelector('.step.on').classList.remove('on','back');
+  step += d;
+  const el = document.querySelector(`.step[data-step="${step}"]`);
+  el.classList.add('on'); if(back) el.classList.add('back');
+  $('bar').style.width = (step*20)+'%';
+  $('steplabel').textContent = TITLES[step];
+  $('btn-back').style.visibility = step>1?'visible':'hidden';
+  $('btn-next').textContent = step===5 ? 'Enviar 🚀' : 'Siguiente →';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// segmented carta: rows vs file
+document.querySelectorAll('#seg-carta button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#seg-carta button').forEach(x=>x.classList.remove('sel'));
+  b.classList.add('sel');
+  const isRows = b.dataset.v==='rows';
+  $('opt-rows').style.display = isRows?'block':'none';
+  $('opt-file').classList.toggle('show', !isRows);
+});
+
+// chips días / pagos / domicilios
+document.querySelectorAll('#chk-dias button').forEach(b=>b.onclick=()=>b.classList.toggle('sel'));
+document.querySelectorAll('#chk-pago button').forEach(b=>b.onclick=()=>b.classList.toggle('sel'));
+document.querySelectorAll('#seg-dom button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#seg-dom button').forEach(x=>x.classList.remove('sel'));
+  b.classList.add('sel');
+  $('cond-dom').classList.toggle('show', b.dataset.v==='SI');
+});
+
+// filas de productos
+function addRow(){
+  const div = document.createElement('div');
+  div.className = 'prow';
+  div.innerHTML = `<input type="text" class="pr-nombre" placeholder="Nombre">
+    <input type="number" class="pr-precio" placeholder="$ Precio">
+    <select class="pr-cat">${CATS.map(c=>`<option>${c}</option>`).join('')}</select>
+    <button type="button" class="pr-del" onclick="this.parentElement.remove()">×</button>`;
+  $('prod-rows').appendChild(div);
+  div.querySelector('.pr-nombre').focus();
+}
+addRow(); addRow();
+
+// dropzones
+document.querySelectorAll('.drop').forEach(dz=>{
+  const tipo = dz.dataset.tipo, input = dz.querySelector('input');
+  dz.onclick = ()=>input.click();
+  input.onchange = ()=>{
+    for(const f of input.files){
+      if(f.size > CONFIG.MAX_MB*1024*1024){ err(`"${f.name}" pesa más de ${CONFIG.MAX_MB}MB`); continue; }
+      FILES[tipo].push(f); preview(tipo, f);
+    }
+    input.value='';
+  };
+});
+function preview(tipo, f){
+  const box = $('th-'+tipo), el = document.createElement(f.type.startsWith('image/')?'img':'div');
+  if(el.tagName==='IMG'){ el.src = URL.createObjectURL(f); } else { el.className='filetag'; el.textContent = f.name.slice(0,14); }
+  box.appendChild(el);
+}
+
+const readB64 = f => new Promise(res=>{
+  const r = new FileReader();
+  r.onload = ()=>res({ tipo:null, filename:f.name, mimeType:f.type, data:r.result.split(',')[1] });
+  r.readAsDataURL(f);
+});
+
+function composeHorario(){
+  const dias = [...document.querySelectorAll('#chk-dias .sel')].map(b=>b.dataset.d);
+  const dTxt = dias.length===7 ? 'Lun–Dom' : dias.join(', ');
+  return `${dTxt} ${$('h-open').value}–${$('h-close').value}`;
+}
+function composeDomicilio(){
+  const parts = [];
+  if($('dom-min').value) parts.push('mín $'+Number($('dom-min').value).toLocaleString('es-CO'));
+  if($('dom-zonas').value.trim()) parts.push($('dom-zonas').value.trim());
+  return parts.join(' · ');
+}
+
+async function submit(){
+  $('form-ui').style.display='none'; $('sending').style.display='block';
+  const v = id => $(id).value.trim();
+  const prods = validProducts();
+  const cats = [...new Set(prods.map(p=>p.cat))];
+  const fields = {
+    nombre:v('nombre'), descripcion:v('descripcion'), direccion:v('direccion'),
+    horario: composeHorario(), redes:v('redes'), promociones:v('promociones'),
+    domicilios: document.querySelector('#seg-dom .sel')?.dataset.v || '',
+    domicilio_detalle: composeDomicilio(),
+    medios_pago: [...document.querySelectorAll('#chk-pago .sel')].map(b=>b.textContent),
+    menu_texto: prods.map(p=>`${p.nombre} - ${money(p.precio)}`).join('\n'),
+    categorias: cats.join(', '), colores:v('colores'),
+    contacto_nombre:v('contacto_nombre'), contacto_wa:v('contacto_wa'), negocio_wa:v('negocio_wa'),
+    restricciones:v('restricciones'), pin:v('pin')
+  };
+  const files = [];
+  for(const tipo of Object.keys(FILES))
+    for(const f of FILES[tipo]) files.push({ ...(await readB64(f)), tipo });
+  try{
+    const r = await fetch(CONFIG.WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ form:'atiendesolo-onboarding', fields, files }) });
+    if(!r.ok) throw 0;
+    $('s-nombre').textContent = fields.nombre.split(' ')[0];
+    $('sending').style.display='none'; $('success').style.display='block';
+  }catch(e){
+    $('sending').style.display='none'; $('form-ui').style.display='block';
+    err('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.');
+  }
+}
+</script>
+</body>
+</html>

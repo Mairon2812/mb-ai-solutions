@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    (function (d) {
+      d.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion-ok');
+      // Red de seguridad: si main.js no llega a arrancar, nunca dejar la página tapada
+      setTimeout(function () {
+        if (!d.hasAttribute('data-boot')) { d.classList.remove('motion-ok'); d.classList.add('is-ready'); }
+      }, 5000);
+    })(document.documentElement);
+  </script>
+
+  <title>MB AI SOLUTIONS — Agentes de IA y automatización para negocios en Yopal</title>
+  <meta name="description" content="MB AI SOLUTIONS ayuda a negocios de Yopal, Casanare, a automatizar y digitalizar su operación con agentes de IA, automatizaciones, integraciones y desarrollo a medida. Solicita tu diagnóstico.">
+  <meta name="theme-color" content="#05070f">
+  <link rel="canonical" href="https://mairon2812.github.io/mb-ai-solutions/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="MB AI SOLUTIONS">
+  <meta property="og:title" content="MB AI SOLUTIONS — Transformamos negocios con Inteligencia Artificial">
+  <meta property="og:description" content="MB AI AGENT, automatización, digitalización e integraciones para negocios de Yopal, Casanare. Precios desde $400.000 COP. Solicita tu diagnóstico.">
+  <meta property="og:url" content="https://mairon2812.github.io/mb-ai-solutions/">
+  <meta property="og:image" content="https://mairon2812.github.io/mb-ai-solutions/assets/frames-hd/frame080.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="assets/logo-fenix-fullcolor-transparente.png">
+  <link rel="apple-touch-icon" href="assets/logo-fenix-fullcolor-transparente.png">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Imágenes críticas -->
+  <link rel="preload" as="image" href="assets/logo-fenix-fullcolor-transparente.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/phoenix.css">
+  <link rel="stylesheet" href="css/intro-universe.css">
+  <link rel="stylesheet" href="css/agency.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- Capa ambiental: partículas (tsParticles) -->
+  <div class="ambient" id="ambient" aria-hidden="true"></div>
+
+  <canvas class="fx-trail" id="fx-trail" aria-hidden="true"></canvas>
+  <div class="phoenix-flight" id="phoenix-flight" aria-hidden="true">
+    <span class="phoenix-flight__flip">
+      <span class="phoenix-flight__aura"></span>
+      <span class="phoenix-flight__rig">
+        <img class="phoenix-flight__part phoenix-flight__wing--left" src="assets/fenix-vuelo-transparente.png" alt="" width="1254" height="1254">
+        <img class="phoenix-flight__part phoenix-flight__wing--right" src="assets/fenix-vuelo-transparente.png" alt="" width="1254" height="1254">
+        <img class="phoenix-flight__part phoenix-flight__tail" src="assets/fenix-vuelo-transparente.png" alt="" width="1254" height="1254">
+        <img class="phoenix-flight__part phoenix-flight__body" src="assets/fenix-vuelo-transparente.png" alt="" width="1254" height="1254">
+      </span>
+    </span>
+  </div>
+
+  <!-- Cursor de luz (solo desktop) -->
+  <div class="cursor-halo" id="cursor-halo" aria-hidden="true"></div>
+  <canvas class="fx-cursor" id="fx-cursor" aria-hidden="true"></canvas>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="MB AI SOLUTIONS, ir al inicio">
+        <img class="brand__logo" src="assets/logo-fenix-fullcolor-transparente.png" alt="MB AI SOLUTIONS" width="1254" height="1254">
+      </a>
+
+      <!-- Idioma: siempre visible (también en móvil) -->
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <a class="lang__opt" href="?lang=es" data-lang="es" hreflang="es" lang="es" aria-label="Ver en español (precios en COP)"><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="10" fill="#FCD116"/><rect y="10" width="30" height="5" fill="#003893"/><rect y="15" width="30" height="5" fill="#CE1126"/></svg><span>ES</span></a>
+        <a class="lang__opt" href="?lang=en" data-lang="en" hreflang="en" lang="en" aria-label="View in English (prices in USD)"><svg class="flag" viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#B22234"/><path d="M0 3h30M0 6h30M0 9h30M0 12h30M0 15h30M0 18h30" stroke="#fff" stroke-width="1.55"/><rect width="13" height="10.8" fill="#3C3B6E"/><g fill="#fff"><circle cx="2.2" cy="2" r=".6"/><circle cx="5.2" cy="2" r=".6"/><circle cx="8.2" cy="2" r=".6"/><circle cx="11" cy="2" r=".6"/><circle cx="3.7" cy="4.4" r=".6"/><circle cx="6.7" cy="4.4" r=".6"/><circle cx="9.6" cy="4.4" r=".6"/><circle cx="2.2" cy="6.8" r=".6"/><circle cx="5.2" cy="6.8" r=".6"/><circle cx="8.2" cy="6.8" r=".6"/><circle cx="11" cy="6.8" r=".6"/><circle cx="3.7" cy="9.1" r=".6"/><circle cx="6.7" cy="9.1" r=".6"/><circle cx="9.6" cy="9.1" r=".6"/></g></svg><span>EN</span></a>
+      </div>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav" data-agency-nav data-lenis-prevent aria-label="Principal">
+        <ul class="nav__list">
+<li><a class="nav__link" href="index.html" data-page="home">Inicio</a></li>
+<li><a class="nav__link" href="soluciones.html" data-page="solutions">Soluciones</a></li>
+<li><a class="nav__link" href="agencia.html" data-page="agency">La agencia</a></li>
+<li><a class="nav__link" href="index.html#consola-ia">Prueba la IA</a></li>
+<li><a class="btn btn--primary" href="contacto.html" data-page="contact">Hablemos</a></li>
+</ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="phoenix" id="inicio" aria-labelledby="hero-title">
+      <div id="phoenix-flight-perch" class="phoenix-flight-perch" aria-hidden="true"></div>
+      <div class="phoenix__stage">
+        <picture class="phoenix__fallback" aria-hidden="true">
+          <source media="(prefers-reduced-motion: reduce)" srcset="assets/frames-hd/frame080.webp">
+          <img src="assets/frames-hd/frame001.webp" alt="" fetchpriority="high" width="1280" height="720">
+        </picture>
+        <canvas id="phoenix-canvas" class="phoenix__canvas" aria-hidden="true"></canvas>
+        <div class="phoenix__shade" aria-hidden="true"></div>
+        <div class="phoenix__copy">
+          <img class="phoenix__logo" src="assets/logo-fenix-fullcolor-transparente.png" alt="MB AI SOLUTIONS" width="1254" height="1254">
+          <p class="eyebrow">MB AI SOLUTIONS · Yopal, Casanare</p>
+          <div class="phoenix__captions">
+            <p class="phoenix__caption" data-scene="0" aria-hidden="true" inert>Todo negocio puede renacer</p>
+            <p class="phoenix__caption" data-scene="1" aria-hidden="true" inert>El fénix emerge</p>
+            <div class="phoenix__caption is-active" data-scene="2">
+              <h1 id="hero-title">Transformamos negocios con <span class="text-glow">Inteligencia Artificial</span></h1>
+              <a class="btn btn--primary" href="contacto.html" target="_blank" rel="noopener">Solicitar diagnóstico →</a>
+            </div>
+          </div>
+          <a class="phoenix__scroll" href="#problemas">Descubre la transformación ↓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE DE NICHOS ============ -->
+    <section class="marquee" aria-label="Nichos que atendemos">
+      <p class="marquee__label" aria-hidden="true">Hecho para negocios como el tuyo</p>
+      <ul class="sr-only">
+        <li>Restaurantes</li><li>Boutiques</li><li>Ferreterías</li><li>Barberías</li>
+        <li>Salones de belleza</li><li>Inmobiliarias</li><li>Tiendas</li><li>Negocios de servicios</li>
+      </ul>
+      <div class="marquee__track" aria-hidden="true">
+        <div class="marquee__group">
+          <span>Restaurantes</span><i></i><span>Boutiques</span><i></i><span>Ferreterías</span><i></i><span>Barberías</span><i></i>
+          <span>Salones de belleza</span><i></i><span>Inmobiliarias</span><i></i><span>Tiendas</span><i></i><span>Negocios de servicios</span><i></i>
+        </div>
+      </div>
+    </section><section class="section agency-overview" id="problemas"><div class="container"><div class="agency-overview__intro"><p class="agency-kicker">MB AI SOLUTIONS</p><h2><span data-en="Connected operations. A business ready to grow.">Tu operación, conectada. Tu negocio, listo para crecer.</span></h2><p><span data-en="We design AI agents, automations and digital solutions from Yopal, with service in Spanish and English. We work with you from consultation through ongoing support.">Diseñamos agentes de IA, automatizaciones y soluciones digitales desde Yopal, con atención en español e inglés. Trabajamos contigo desde el diagnóstico hasta el soporte.</span></p></div><div class="agency-paths"><a href="soluciones.html"><span><span data-en="What we can build">Qué podemos construir</span></span><h3><span data-en="Solutions for your operations">Soluciones para tu operación</span></h3><p><span data-en="Agents, automation, integrations and custom development.">Agentes, automatización, integraciones y desarrollo a medida.</span></p><span class="agency-paths__arrow" aria-hidden="true">↗</span></a><a href="agencia.html"><span><span data-en="Who you will work with">Con quién vas a trabajar</span></span><h3><span data-en="Meet MB AI SOLUTIONS">Conoce MB AI SOLUTIONS</span></h3><p><span data-en="Work directly with the founder, with a clear process at every stage.">Trato directo con el fundador y un proceso claro en cada etapa.</span></p><span class="agency-paths__arrow" aria-hidden="true">↗</span></a></div></div></section><section class="section business-explorer" id="explorar" aria-labelledby="explore-title"><div class="container">
+<div class="agency-section-head"><div><p class="agency-kicker">MB AI SOLUTIONS</p><h2 id="explore-title"><span data-en="Technology starts with your business.">La tecnología empieza por tu negocio.</span></h2></div><p><span data-en="Choose your industry and explore a possible solution for your operations.">Elige tu sector y explora una solución posible para tu operación.</span></p></div>
+<div class="explorer-layout"><div class="sector-selector" role="group" aria-label="Tipo de negocio">
+<button class="sector-choice" type="button" data-sector="retail" aria-pressed="false"><span data-en="Retail & boutiques">Tiendas y boutiques</span><span aria-hidden="true">↗</span></button><button class="sector-choice" type="button" data-sector="food" aria-pressed="false"><span data-en="Restaurants">Restaurantes</span><span aria-hidden="true">↗</span></button><button class="sector-choice" type="button" data-sector="appointments" aria-pressed="false"><span data-en="Barbershops & salons">Barberías y salones</span><span aria-hidden="true">↗</span></button><button class="sector-choice" type="button" data-sector="property" aria-pressed="false"><span data-en="Real estate">Inmobiliarias</span><span aria-hidden="true">↗</span></button>
+</div><div class="explorer-result" aria-live="polite" aria-atomic="true"><p class="agency-kicker"><span data-en="Possible application">Aplicación posible</span></p><h3 id="sector-title"><span data-en="Handle inquiries without losing track.">Atiende consultas sin perder el hilo.</span></h3><p id="sector-description"><span data-en="An agent checks your catalog, answers questions and organizes requests for your team.">Un agente consulta tu catálogo, responde preguntas y organiza las solicitudes para tu equipo.</span></p><ol class="solution-flow" id="sector-flow"><li><span data-en="Customer inquiry">Consulta del cliente</span></li><li><span data-en="Catalog information">Información del catálogo</span></li><li><span data-en="Request to an advisor">Solicitud al asesor</span></li></ol><p class="explorer-note"><span data-en="Illustrative example. Features and integrations are defined during the consultation.">Ejemplo ilustrativo. Las funciones y las integraciones se definen en el diagnóstico.</span></p><a class="agency-text-link" id="sector-link" href="contacto.html?sector=retail"><span data-en="Explore this solution">Explorar esta solución</span> <span aria-hidden="true">↗</span></a></div></div>
+<noscript><p>Consulta todas las soluciones en <a href="soluciones.html">nuestro catálogo</a>.</p></noscript>
+</div></section>
+
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ PROBLEMAS QUE RESOLVEMOS ============ -->
+
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ PRODUCTO PRINCIPAL: MB AI AGENT ============ -->
+
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ SERVICIOS COMPLEMENTARIOS ============ -->
+
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ SECTORES ============ -->
+
+    <div class="light-divider" aria-hidden="true"></div>
+    <!-- ============ PROCESO ============ -->
+
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ PAQUETES Y PRECIOS ============ -->
+
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ POR QUÉ MB AI SOLUTIONS ============ -->
+    <section class="section home-lab">      <!-- Consola IA: prueba viviente de "equipo pequeño, experto y rápido" -->
+      <div class="container jarvis" id="consola-ia">
+        <div class="jarvis__copy">
+          <p class="eyebrow" data-reveal>Pruébalo tú mismo</p>
+          <h3 class="jarvis__title" data-split>Un equipo pequeño. <span class="text-glow">Resultados de otro nivel.</span></h3>
+          <p class="jarvis__text" data-reveal>Somos pocos, expertos y rápidos — y esto es una muestra de lo que construimos en semanas, no en meses. Tócalo, pregúntale, ponlo a prueba.</p>
+          <p class="jarvis__note" data-reveal>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+            Asistente con IA real (Google Gemini): responde solo sobre MB AI SOLUTIONS y puede equivocarse. No compartas datos personales. Las preguntas sugeridas tienen respuestas preparadas.
+          </p>
+          <!-- WhatsApp: 573025289834 · aparece tras la primera interacción -->
+          <a class="btn btn--primary jarvis__cta" id="console-cta" hidden href="https://wa.me/573025289834?text=Hola%2C%20prob%C3%A9%20la%20consola%20de%20su%20web%20y%20quiero%20un%20asistente%20as%C3%AD%20para%20mi%20negocio." target="_blank" rel="noopener">
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+            Quiero uno así en mi negocio
+          </a>
+        </div>
+
+        <div class="console" data-reveal>
+          <span class="console__corner console__corner--tl" aria-hidden="true"></span>
+          <span class="console__corner console__corner--tr" aria-hidden="true"></span>
+          <span class="console__corner console__corner--bl" aria-hidden="true"></span>
+          <span class="console__corner console__corner--br" aria-hidden="true"></span>
+
+          <div class="console__bar">
+            <span class="console__status"><i class="console__dot" aria-hidden="true"></i><span id="console-state">EN LÍNEA</span><span class="console__live">IA REAL</span></span>
+            <span class="console__meta" aria-hidden="true"><span id="console-clock">--:--:--</span><span class="console__sep">·</span>NODO: YOPAL</span>
+          </div>
+
+          <div class="console__core" aria-hidden="true">
+            <canvas class="console__wave" id="console-wave"></canvas>
+            <span class="console__core-label">MB·IA</span>
+          </div>
+
+          <div class="console__log" id="console-log" role="log" aria-live="polite" aria-label="Conversación con el asistente" data-lenis-prevent>
+            <p class="console__line console__line--ai"><span class="console__who">MB·IA ›</span> Hola, soy el asistente de MB AI SOLUTIONS. Elige una pregunta o escríbeme la tuya.</p>
+          </div>
+
+          <div class="console__plan-wrap">
+          <span class="console__hint" id="console-hint" aria-hidden="true">✦ Esta IA es real: pruébala</span>
+          <button type="button" class="console__plan" id="console-plan">
+            <span class="console__plan-glow" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.5L12 15l-1.8-4.5L5.5 9l4.7-1.4L12 3Z"/><path d="M18 15l.8 2 2 .8-2 .7-.8 2-.8-2-2-.7 2-.8.8-2Z"/></svg>
+            Diseña un plan de IA para mi negocio
+          </button>
+          </div>
+
+          <div class="console__chips" role="group" aria-label="Preguntas sugeridas">
+            <button type="button" class="console__chip" data-key="restaurante">¿Qué harías por mi restaurante?</button>
+            <button type="button" class="console__chip" data-key="noche">¿Atiendes de noche?</button>
+            <button type="button" class="console__chip" data-key="costo">¿Cuánto cuesta?</button>
+            <button type="button" class="console__chip" data-key="tecnologia">¿Necesito saber de tecnología?</button>
+          </div>
+
+          <form class="console__form" id="console-form" autocomplete="off">
+            <label class="sr-only" for="console-input">Escríbele al asistente</label>
+            <span class="console__prompt" aria-hidden="true">›</span>
+            <input class="console__input" id="console-input" type="text" maxlength="160" placeholder="Escríbele al asistente…">
+            <button class="console__send" type="submit" aria-label="Enviar pregunta">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="section cta" id="contacto" aria-labelledby="cta-title">
+      <div class="cta__bg" aria-hidden="true">
+        <div class="cta__glow"></div>
+        <svg class="cta__streams" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice">
+          <path class="stream" d="M-50 520 C 300 480, 520 300, 720 300 S 1140 480, 1500 520"/>
+          <path class="stream stream--thin" d="M-50 80 C 300 120, 520 300, 720 300 S 1140 120, 1500 80"/>
+        </svg>
+      </div>
+
+      <div class="container cta__inner">
+        <p class="eyebrow cta__eyebrow" data-reveal>Siguiente paso</p>
+        <h2 class="cta__title" id="cta-title" data-split>¿Hablamos de <span class="text-glow">tu negocio?</span></h2>
+        <p class="cta__sub" data-reveal>Cuéntanos cómo funciona hoy tu negocio y te mostramos qué se puede automatizar, cuánto costaría y en cuánto tiempo.</p>
+
+        <div class="cta__action" data-reveal>
+          <span class="cta__ring" aria-hidden="true"></span>
+          <span class="cta__ring cta__ring--2" aria-hidden="true"></span>
+          <span class="cta__orbit" aria-hidden="true"><i></i><i></i><i></i></span>
+          <!-- WhatsApp: 573025289834 -->
+          <a class="btn btn--primary btn--xl magnetic" href="contacto.html" target="_blank" rel="noopener">
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+            Solicitar diagnóstico
+          </a>
+        </div>
+        <p class="cta__alt" data-reveal>
+          <!-- WhatsApp: 573025289834 -->
+          <a href="https://wa.me/573025289834?text=Hola%20MB%20AI%20SOLUTIONS%2C%20quiero%20automatizar%20mi%20negocio." target="_blank" rel="noopener">Quiero automatizar mi negocio →</a>
+        </p>
+        <div class="cta__perch" id="phoenix-flight-end" aria-hidden="true"></div>
+        <p class="cta__note" data-reveal>Respuesta directa del fundador · Yopal, Casanare</p>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <div class="light-divider" aria-hidden="true"></div>
+
+    <div class="container footer__top">
+      <div class="footer__brand">
+        <a class="footer__logo-link" href="index.html" aria-label="MB AI SOLUTIONS, volver al inicio">
+          <img class="footer__logo" src="assets/logo-fenix-fullcolor-transparente.png" alt="MB AI SOLUTIONS" width="1254" height="1254" loading="lazy">
+        </a>
+        <p class="footer__slogan">Transformamos negocios con <span class="text-glow">Inteligencia Artificial.</span></p>
+        <p class="footer__about">Ayudamos a negocios a automatizar y digitalizar su operación mediante IA, integraciones y desarrollo tecnológico.</p>
+        <!-- WhatsApp: 573025289834 -->
+        <a class="btn btn--primary btn--sm magnetic footer__cta" href="contacto.html" target="_blank" rel="noopener">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+          Solicitar diagnóstico
+        </a>
+      </div>
+
+      <nav class="footer__col" aria-labelledby="f-servicios">
+        <h2 class="footer__heading" id="f-servicios">Servicios</h2>
+        <ul>
+          <li><a href="soluciones.html#mb-ai-agent">MB AI AGENT</a></li>
+          <li><a href="soluciones.html#servicios">Automatización de procesos</a></li>
+          <li><a href="soluciones.html#servicios">Digitalización de negocios</a></li>
+          <li><a href="soluciones.html#servicios">Integraciones</a></li>
+          <li><a href="soluciones.html#servicios">Desarrollo de soluciones digitales</a></li>
+          <li><a href="soluciones.html#servicios">Consultoría e implementación de IA</a></li>
+          <li><a href="soluciones.html#mb-ai-care">MB AI CARE</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__col" aria-labelledby="f-empresa">
+        <h2 class="footer__heading" id="f-empresa">Empresa</h2>
+        <ul>
+          <li><a href="agencia.html#proceso">Cómo trabajamos</a></li>
+          <li><a href="soluciones.html#precios">Paquetes y precios</a></li>
+          <li><a href="index.html#explorar">Sectores</a></li>
+          <li><a href="agencia.html#por-que">Por qué nosotros</a></li>
+          <li><a href="index.html#consola-ia">Prueba nuestra IA</a></li>
+          <li><a href="https://github.com/Mairon2812/mb-ai-solutions/blob/main/PROPUESTA.md" target="_blank" rel="noopener">La agencia</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h2 class="footer__heading">Contacto</h2>
+        <ul class="footer__contact">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-4 2.5Z"/></svg>
+            <!-- WhatsApp: 573025289834 -->
+            <a href="contacto.html" target="_blank" rel="noopener">+57 302 528 9834</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span>Yopal, Casanare, Colombia</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+            <span>Atendemos en español e inglés</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+            <span>Trato directo con el fundador</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© 2026 MB AI SOLUTIONS · Todos los derechos reservados</p>
+      <p class="footer__made">Desarrollo con AI <span aria-hidden="true">✦</span></p>
+      <a class="footer__top-btn" href="index.html" aria-label="Volver arriba">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Océano cibernético (canvas decorativo) -->
+    <div class="footer__sea" aria-hidden="true">
+      <canvas class="footer__sea-canvas" id="cyber-sea"></canvas>
+    </div>
+  </footer>
+
+  <!-- ============ MARIPOSA GUÍA: lleva al visitante a probar la IA ============ -->
+  <a class="guide" id="ai-guide" href="#consola-ia" aria-label="Prueba nuestra IA: ir a la consola del asistente">
+    <span class="guide__body"><!-- Morpho generada por js/guide.js --></span>
+    <span class="guide__tip" aria-hidden="true">✦ Prueba nuestra IA</span>
+  </a>
+
+  <!-- ============ BOTÓN FLOTANTE WHATSAPP ============ -->
+  <!-- WhatsApp: 573025289834 -->
+  <a class="wa-float" id="wa-float" href="contacto.html" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <span class="wa-float__pulse" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+    <span class="wa-float__label">¿Hablamos?</span>
+  </a>
+
+  <script src="js/phoenix.js"></script>
+
+  <!-- GSAP 3.13 + plugins (cdnjs) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/MotionPathPlugin.min.js" defer></script>
+  <!-- Lenis smooth scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" defer></script>
+  <!-- tsParticles se carga en diferido desde main.js (no bloquea el primer render) -->
+  <!-- Idioma/moneda por región: debe ir antes de los demás scripts -->
+  <script src="js/i18n.js" defer></script>
+  <script src="js/agency.js" defer></script>
+  <script src="js/entry.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/console.js" defer></script>
+  <script src="js/sea.js" defer></script>
+  <script src="js/guide.js" defer></script>
+</body>
+</html>

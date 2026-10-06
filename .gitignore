@@ -1,0 +1,15 @@
+# Documentos internos de trabajo (no se publican)
+02-PROMPT-MAESTRO.md
+Docs/
+
+# Originales pesados: la web usa las versiones optimizadas de assets/img/
+assets/Branding/
+assets/colibri.png
+assets/logo-principal.png
+assets/img/logo-full.png
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
