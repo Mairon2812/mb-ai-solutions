@@ -81,7 +81,7 @@
 
   <div id="form-ui">
     <h1>Activa tu negocio 🚀</h1>
-    <p class="sub">Toca, elige y sube fotos. Casi no tienes que escribir.</p>
+    <p class="sub">Toca, elige y listo. Casi no tienes que escribir.</p>
     <div class="progress"><i id="bar"></i></div>
     <div class="step-label" id="steplabel">PASO 1 DE 5 · TU NEGOCIO</div>
 
@@ -132,7 +132,7 @@
         <label class="f">¿Cómo nos pasas tu carta? <b>*</b></label>
         <div class="seg" id="seg-carta">
           <button type="button" data-v="rows" class="sel">✏️ Agregar productos</button>
-          <button type="button" data-v="file">📄 Subir archivo</button>
+          <button type="button" data-v="wa">📲 La mando por WhatsApp</button>
         </div>
         <div id="opt-rows">
           <label class="f"><span class="hint">Agrega uno por uno, sin escribir párrafos</span></label>
@@ -140,25 +140,19 @@
           <button type="button" class="btn-add" onclick="addRow()">+ Agregar producto</button>
         </div>
         <div id="opt-file" class="cond">
-          <label class="f"><span class="hint">Excel con tu menú, o foto/PDF de tu carta física</span></label>
-          <div class="drop" data-tipo="carta"><input type="file" accept="image/*,.pdf,.xlsx,.xls,.csv">📄 Toca para subir Excel, foto o PDF</div>
-          <div class="thumbs" id="th-carta"></div>
+          <div class="drop" style="cursor:default">
+            <div style="font-size:40px">📲</div>
+            <p style="margin-top:10px;line-height:1.5">Después de enviar este formulario,<br>mándanos tu carta por WhatsApp:<br><b style="color:#00E5FF">Excel, foto o PDF de tu menú</b></p>
+          </div>
         </div>
       </div>
 
       <div class="step" data-step="4">
-        <label class="f">Logo <span class="hint">(PNG o JPG)</span></label>
-        <div class="drop" data-tipo="logo"><input type="file" accept="image/*">🎨 Toca para subir tu logo</div>
-        <div class="thumbs" id="th-logo"></div>
-        <label class="f">Fotos de tus productos <span class="hint">(hasta 10)</span></label>
-        <div class="drop" data-tipo="fotos_productos"><input type="file" accept="image/*" multiple>📸 Toca para subir fotos</div>
-        <div class="thumbs" id="th-fotos_productos"></div>
-        <label class="f">Fotos del local <span class="hint">(hasta 5, opcional)</span></label>
-        <div class="drop" data-tipo="fotos_local"><input type="file" accept="image/*" multiple>🏠 Fotos del local</div>
-        <div class="thumbs" id="th-fotos_local"></div>
-        <label class="f">Videos <span class="hint">(hasta 3, opcional)</span></label>
-        <div class="drop" data-tipo="videos"><input type="file" accept="video/*" multiple>🎬 Videos del local o productos</div>
-        <div class="thumbs" id="th-videos"></div>
+        <div class="drop" style="cursor:default">
+          <div style="font-size:40px">📸</div>
+          <p style="margin-top:10px;line-height:1.6">Después de enviar, mándanos por WhatsApp:<br>
+          <b style="color:#00E5FF">tu logo · fotos de tus productos<br>fotos del local · videos</b></p>
+        </div>
         <label class="f">Colores de tu marca <span class="hint">(si tienes)</span></label>
         <input type="text" id="colores" placeholder="Ej: rojo y negro">
       </div>
@@ -191,21 +185,19 @@
   <div id="success">
     <div class="check">✓</div>
     <h2>¡Listo, <span id="s-nombre"></span>! 🎉</h2>
-    <p>Recibimos todo. Ya estamos armando tu carta digital + tu IA.<br>Te escribimos por WhatsApp cuando esté lista (máx. 5 días hábiles).</p>
+    <p>Se abrió tu WhatsApp con toda tu información.<br><b style="color:#00E5FF">Dale enviar</b> y después mándanos por ese mismo chat:<br>tu logo, fotos de tus productos, del local<br>y tu carta (si no la escribiste arriba). 📸<br><br>Te escribimos cuando tu carta digital + IA esté lista (máx. 5 días hábiles).</p>
   </div>
 </div>
 
 <script>
 /* ============ CONFIG ============ */
 const CONFIG = {
-  WEBHOOK: 'https://mb-ai-solutions.app.n8n.cloud/webhook/atiendesolo-onboarding',
-  MAX_MB: 15
+  WA: '573025289834'
 };
-const TITLES = {1:'PASO 1 DE 5 · TU NEGOCIO',2:'PASO 2 DE 5 · DOMICILIOS Y PAGOS',3:'PASO 3 DE 5 · TU CARTA',4:'PASO 4 DE 5 · MARCA Y FOTOS',5:'PASO 5 DE 5 · CONTACTO'};
+const TITLES = {1:'PASO 1 DE 5 · TU NEGOCIO',2:'PASO 2 DE 5 · DOMICILIOS Y PAGOS',3:'PASO 3 DE 5 · TU CARTA',4:'PASO 4 DE 5 · MARCA Y MULTIMEDIA',5:'PASO 5 DE 5 · CONTACTO'};
 const CATS = ['Hamburguesas','Acompañamientos','Bebidas','Postres','Pizzas','Sushi','Otro'];
 
 let step = 1, back = false;
-const FILES = { logo:[], carta:[], fotos_productos:[], fotos_local:[], videos:[] };
 const $ = id => document.getElementById(id);
 const money = n => '$' + Number(n).toLocaleString('es-CO');
 
@@ -244,9 +236,8 @@ function go(d){
     }
     if(step===3){
       const modo = document.querySelector('#seg-carta .sel')?.dataset.v;
-      const okRows = validProducts().length>0, okFile = FILES.carta.length>0;
+      const okRows = validProducts().length>0;
       if(modo==='rows' && !okRows){ err('Agrega al menos un producto con nombre y precio'); return; }
-      if(modo==='file' && !okFile){ err('Sube tu archivo (Excel, foto o PDF)'); return; }
     }
     if(step===5){
       for(const id of ['contacto_nombre','contacto_wa','negocio_wa'])
@@ -297,30 +288,6 @@ function addRow(){
 }
 addRow(); addRow();
 
-// dropzones
-document.querySelectorAll('.drop').forEach(dz=>{
-  const tipo = dz.dataset.tipo, input = dz.querySelector('input');
-  dz.onclick = ()=>input.click();
-  input.onchange = ()=>{
-    for(const f of input.files){
-      if(f.size > CONFIG.MAX_MB*1024*1024){ err(`"${f.name}" pesa más de ${CONFIG.MAX_MB}MB`); continue; }
-      FILES[tipo].push(f); preview(tipo, f);
-    }
-    input.value='';
-  };
-});
-function preview(tipo, f){
-  const box = $('th-'+tipo), el = document.createElement(f.type.startsWith('image/')?'img':'div');
-  if(el.tagName==='IMG'){ el.src = URL.createObjectURL(f); } else { el.className='filetag'; el.textContent = f.name.slice(0,14); }
-  box.appendChild(el);
-}
-
-const readB64 = f => new Promise(res=>{
-  const r = new FileReader();
-  r.onload = ()=>res({ tipo:null, filename:f.name, mimeType:f.type, data:r.result.split(',')[1] });
-  r.readAsDataURL(f);
-});
-
 function composeHorario(){
   const dias = [...document.querySelectorAll('#chk-dias .sel')].map(b=>b.dataset.d);
   const dTxt = dias.length===7 ? 'Lun–Dom' : dias.join(', ');
@@ -338,30 +305,37 @@ async function submit(){
   const v = id => $(id).value.trim();
   const prods = validProducts();
   const cats = [...new Set(prods.map(p=>p.cat))];
-  const fields = {
-    nombre:v('nombre'), descripcion:v('descripcion'), direccion:v('direccion'),
-    horario: composeHorario(), redes:v('redes'), promociones:v('promociones'),
-    domicilios: document.querySelector('#seg-dom .sel')?.dataset.v || '',
-    domicilio_detalle: composeDomicilio(),
-    medios_pago: [...document.querySelectorAll('#chk-pago .sel')].map(b=>b.textContent),
-    menu_texto: prods.map(p=>`${p.nombre} - ${money(p.precio)}`).join('\n'),
-    categorias: cats.join(', '), colores:v('colores'),
-    contacto_nombre:v('contacto_nombre'), contacto_wa:v('contacto_wa'), negocio_wa:v('negocio_wa'),
-    restricciones:v('restricciones'), pin:v('pin')
-  };
-  const files = [];
-  for(const tipo of Object.keys(FILES))
-    for(const f of FILES[tipo]) files.push({ ...(await readB64(f)), tipo });
-  try{
-    const r = await fetch(CONFIG.WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ form:'atiendesolo-onboarding', fields, files }) });
-    if(!r.ok) throw 0;
-    $('s-nombre').textContent = fields.nombre.split(' ')[0];
-    $('sending').style.display='none'; $('success').style.display='block';
-  }catch(e){
-    $('sending').style.display='none'; $('form-ui').style.display='block';
-    err('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.');
+  const modoCarta = document.querySelector('#seg-carta .sel')?.dataset.v;
+  const L = [];
+  L.push('🚀 *NUEVO CLIENTE · AtiendeSolo*');
+  const add = (t,x)=>{ if(x) L.push(t+': '+x); };
+  add('*Negocio*', v('nombre'));
+  add('*Descripción*', v('descripcion'));
+  add('*Dirección*', v('direccion'));
+  add('*Horario*', composeHorario());
+  add('*Redes*', v('redes'));
+  add('*Promos*', v('promociones'));
+  add('*Domicilios*', (document.querySelector('#seg-dom .sel')?.dataset.v||'') + (composeDomicilio()?' — '+composeDomicilio(): ''));
+  add('*Pagos*', [...document.querySelectorAll('#chk-pago .sel')].map(b=>b.textContent).join(', '));
+  add('*Colores*', v('colores'));
+  add('*Contacto*', v('contacto_nombre')+(v('contacto_wa')?' ('+v('contacto_wa')+')':''));
+  add('*WA negocio*', v('negocio_wa'));
+  add('*IA no debe*', v('restricciones'));
+  add('*PIN*', v('pin'));
+  L.push('━━━━━━━━━━━━');
+  if(modoCarta==='rows' && prods.length){
+    L.push('*CARTA:*');
+    prods.forEach(p=>L.push('• '+p.nombre+' — '+money(p.precio)));
+    if(cats.length) L.push('_Categorías: '+cats.join(', ')+'_');
+  } else {
+    L.push('*Carta:* la manda por WhatsApp 📲');
   }
+  L.push('━━━━━━━━━━━━');
+  L.push('_Logo, fotos y videos los manda por WhatsApp 📸_');
+  const msg = encodeURIComponent(L.join('\n'));
+  window.open('https://wa.me/'+CONFIG.WA+'?text='+msg, '_blank');
+  $('s-nombre').textContent = v('nombre').split(' ')[0];
+  $('sending').style.display='none'; $('success').style.display='block';
 }
 </script>
 </body>
